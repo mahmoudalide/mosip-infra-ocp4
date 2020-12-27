@@ -25,7 +25,7 @@
     ```
 
 ## Update masterdata 
-  * Update the following CSVs in master db DML directory.  On sandbox the DMLs are located at `/home/mosipuser/mosip-infra/deployment/sandbox-v2/tmp/commons/db_scripts/mosip_master/dml`.
+  * Update the following CSVs in master db DML directory.  On sandbox the DMLs are located at `/home/mosipuser/mosip-infra-ocp4/deployment/sandbox-v2/tmp/commons/db_scripts/mosip_master/dml`.
     * `master-device_type.csv`
     * `master-device_spec.csv`
     * `master-device_master.csv`    
@@ -38,26 +38,26 @@
     * `master-zone_user_h.csv`
   * Run `update_masterdb.sh`. Example:
     ```
-    $ ./update_masterdb.sh /home/mosipuser/mosip-infra/deployment/sandbox-v2/tmp/commons/db_scripts/mosip_master
+    $ ./update_masterdb.sh /home/mosipuser/mosip-infra-ocp4/deployment/sandbox-v2/tmp/commons/db_scripts/mosip_master
     ```
   * CAUTION: The above will reset entire DB and load it fresh.  
   * You may want to maintain the DML directory separately in your repo. 
   * It is assumed that all other tables of master DB are already updated.
  
 ## Device provider partner registation
-  * Update the following CSVs in PMS DML directory.  On sandbox the DMLs are located at `/home/mosipuser/mosip-infra/deployment/sandbox-v2/tmp/partner-management-services/db_scripts/mosip_pms/dml`.
+  * Update the following CSVs in PMS DML directory.  On sandbox the DMLs are located at `/home/mosipuser/mosip-infra-ocp4/deployment/sandbox-v2/tmp/partner-management-services/db_scripts/mosip_pms/dml`.
     * `pms-partner.csv`
     * `pms-partner_h.csv`
     * `pms-policy_group.csv`
   * Run `update_pmsdb.sh`. Example: 
     ```
-    $ ./update_pmsdb.sh /home/mosipuser/mosip-infra/deployment/sandbox-v2/tmp/partner-management-services/db_scripts/mosip_pms
+    $ ./update_pmsdb.sh /home/mosipuser/mosip-infra-ocp4/deployment/sandbox-v2/tmp/partner-management-services/db_scripts/mosip_pms
     ```
   * CAUTION: The above will reset entire DB and load it fresh.  
   * Some example CSVs are located at `csv/pms`.
 
 ## Device registation
-  * Update the following CSVs in Regdevice DML directory.  On sandbox the DMLs are located at `/home/mosipuser/mosip-infra/deployment/sandbox-v2/tmp/common/db_scripts/mosip_regdevice/dml`.
+  * Update the following CSVs in Regdevice DML directory.  On sandbox the DMLs are located at `/home/mosipuser/mosip-infra-ocp4/deployment/sandbox-v2/tmp/common/db_scripts/mosip_regdevice/dml`.
     * `regdevice-device_detail.csv`
     * `regdevice-secure_biometric_interface.csv`
     * `regdevice-registered_device_master.csv`
@@ -65,7 +65,7 @@
     * `regdevice-registered_device_master_h.csv`
   * Run `update_regdevicedb.sh`. Example: 
     ```
-    $ ./update_regdevicedb.sh /home/mosipuser/mosip-infra/deployment/sandbox-v2/tmp/commons/db_scripts/mosip_regdevice
+    $ ./update_regdevicedb.sh /home/mosipuser/mosip-infra-ocp4/deployment/sandbox-v2/tmp/commons/db_scripts/mosip_regdevice
     ```
   * CAUTION: The above will reset entire DB and load it fresh.  
   * Some example CSVs are located at `csv/regdevice`.
