@@ -3,7 +3,8 @@
 #
 - name: Add user nfsnobody
   user:
-    name: nfsnobody 
+    name: nfsnobody
+  become: true
 
 - name: Create nfs mount folder
   file:
