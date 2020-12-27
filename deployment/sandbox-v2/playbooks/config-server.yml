@@ -16,7 +16,7 @@
     install_name: 'config-server'
     helm_chart: '{{charts_root}}/config-server'
     is_template: true  
-    helm_namespace: 'mosip'
+    helm_namespace: 'default'
     helm_strings: "encryptKey={{secrets.config_server.encrypt_key}},gitRepo.password={{secrets.config_repo.password}}"
     helm_values: '{{charts_root}}/config-server/values.template.j2'
   roles:

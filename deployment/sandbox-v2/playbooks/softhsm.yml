@@ -19,7 +19,7 @@
     install_name: 'softhsm-{{hsm_prop.label}}' 
     helm_chart: '{{charts_root}}/softhsm'
     is_template: true  
-    helm_namespace: 'mosip'
+    helm_namespace: 'default'
     helm_values: '{{charts_root}}/softhsm/values.template.j2'
     helm_strings: ''
   roles:
