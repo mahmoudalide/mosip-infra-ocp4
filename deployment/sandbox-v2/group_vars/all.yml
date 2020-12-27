@@ -57,7 +57,7 @@ docker_registries:
 
 clusters:
   mz:
-    kube_config:  '/root/.kube/kubeconfig'
+    kube_config:  '{{user_home}}/.kube/kubeconfig_mz'
 regproc:
   nfs:
     server: '{{nfs.server}}'
