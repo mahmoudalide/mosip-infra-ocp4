@@ -204,8 +204,8 @@ databases:
     sql_path: '{{repos.websub.dest}}/db_scripts'
 
 nfs:
-  server: 192.168.50.1
-  folder: /var/lib/libvirt/images/ocp-pv-user-pvs
+  server: 51.79.202.117
+  folder: /srv/nfs/mosip
   provisioner: nfs-provisioner  # Name
 
 hdfs:
