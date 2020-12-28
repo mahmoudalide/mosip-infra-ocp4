@@ -5,7 +5,7 @@ keycloakUser: {{ keycloak.user }}
 keycloakPassword: '' # To be passed directly with helm command
 domain: "keycloak.{{ sandbox_domain_name }}"
 internalDomain: {{ clusters.mz.nodeport_node }} 
-keycloakExternalUrl: "https://keycloak.{{ sandbox_domain_name }}/keycloak/auth/"  
+keycloakExternalUrl: "http://keycloak.{{ sandbox_domain_name }}/auth/"
 containerPort: 8080
 servicePort: 80
 db:
