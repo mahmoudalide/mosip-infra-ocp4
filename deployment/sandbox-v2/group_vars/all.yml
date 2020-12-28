@@ -58,6 +58,7 @@ docker_registries:
 clusters:
   mz:
     kube_config:  '{{user_home}}/.kube/kubeconfig_mz'
+    nodeport_node: '192.168.50.13'
 regproc:
   nfs:
     server: '{{nfs.server}}'
@@ -83,12 +84,7 @@ postgres:
   nodeport: 30090  # fixed for connecting from outside the cluster
   user: postgres
   max_connections: 1000
-  node_affinity: 
-    enabled: false # To run postgres on an exclusive node
-    node: 'mzworker0.sb' # Hostname. Run only on this node, and nothing else should run on this node
-    taint:
-      key: "postgres" # Key for applying taint on node
-      value: "only"  
+
 
 # minio
 minio:
