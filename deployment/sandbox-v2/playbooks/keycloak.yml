@@ -1,21 +1,21 @@
 
-# Install keycloak
-#- hosts: console
-#  vars:
-#    kube_config: '{{clusters.mz.kube_config}}'
-#    install_name: 'keycloak'
-#    helm_chart: '{{charts_root}}/keycloak'
-#    is_template: true  
-#    helm_namespace: 'default'
-#    helm_values: '{{charts_root}}/keycloak/values.template.j2'
-#    helm_strings: 'keycloakPassword={{secrets.keycloak.password}},db.password={{secrets.postgres.su}}'
-#  roles:
-#    - {role:  helm, tags: [keycloak]}
+## Install keycloak
+- hosts: console
+  vars:
+    kube_config: '{{clusters.mz.kube_config}}'
+    install_name: 'keycloak'
+    helm_chart: '{{charts_root}}/keycloak'
+    is_template: true
+    helm_namespace: 'default'
+    helm_values: '{{charts_root}}/keycloak/values.template.j2'
+    helm_strings: 'keycloakPassword={{secrets.keycloak.password}},db.password={{secrets.postgres.su}}'
+  roles:
+    - {role:  helm, tags: [keycloak]}
 
-#  tasks:
-#    - name: Waiting for keycloak to install completely.
-#      pause:
-#        seconds: 10 
+  tasks:
+   - name: Waiting for keycloak to install completely.
+     pause:
+       seconds: 10 
 
 # Separate play for init to keep sequence of execution
 - hosts: console
