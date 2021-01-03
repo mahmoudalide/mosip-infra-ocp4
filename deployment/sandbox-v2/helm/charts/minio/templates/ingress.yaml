@@ -8,7 +8,7 @@ metadata:
   name: minio
   namespace: {{ .Release.Namespace }}
 spec:
-  host: "activemq.{{ .Values.domain}}"
+  host: "minio.{{ .Values.domain}}"
   port:
     targetPort: {{ .Values.service.port }}
   #tls:
