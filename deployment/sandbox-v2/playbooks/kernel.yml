@@ -12,9 +12,9 @@
     kube_config: '{{clusters.mz.kube_config}}'
     install_name: 'kernel'
     helm_chart: '{{charts_root}}/kernel'
-    is_template: true
+    is_template: false
     helm_namespace: 'default'
     helm_strings: "encryptKey={{secrets.config_server.encrypt_key}},gitRepo.password={{secrets.config_repo.password}}"
-    helm_values: '{{charts_root}}/kernel/values.template.j2'
+    helm_values: '{{charts_root}}/kernel/values.yaml'
   roles:
     - {role:  helm}
