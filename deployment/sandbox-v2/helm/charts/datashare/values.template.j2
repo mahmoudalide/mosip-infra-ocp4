@@ -1,4 +1,4 @@
-component: packetmanager
+component: datashare
 part-of: mosip
 activeProfileEnv: mz 
 springConfigLabel:  {{ config_repo.version }}
@@ -16,10 +16,10 @@ dockerHub:
   keyname: {{ docker_hub.keyname }}
 
 services:
-  packet:
-    serviceName: {{ versions.services.packetmanager.service.keys()[0] }}
-    dockerImage: {{ versions.services.packetmanager.service.values()[0] }}
-    containerPort: 8093
+  datashare:
+    serviceName: {{ versions.services.datashare.service.key }}
+    dockerImage: {{ versions.services.datashare.service.value }}
+    containerPort: 8097
     servicePort: 80
-    ingressPath: /commons/v1/packetmanager
-    healthUrl: /commons/v1/packetmanager/actuator/health
+    ingressPath: /v1/datashare
+    healthUrl: /v1/datashare/actuator/health

@@ -4,14 +4,14 @@ metadata:
   annotations:
     description: Route for application's https service.
   labels:
-    application: {{ .Values.services.packet.serviceName }}
-  name: {{ .Values.services.packet.serviceName  }}
+    application: {{ .Values.services.datashare.serviceName }}
+  name: {{ .Values.services.datashare.serviceName  }}
 spec:
-  host: packetmanager.apps.ocp.rnpdev.shop
+  host: datashare.apps.ocp.rnpdev.shop
   #port:
   #  targetPort: 8097
   #tls:
   #  termination: passthrough
   to:
     kind: Service
-    name: {{ .Values.services.packet.serviceName }}
+    name: {{ .Values.services.datashare.serviceName }}
