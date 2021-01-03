@@ -1,16 +1,19 @@
-apiVersion: networking.k8s.io/v1beta1
-kind: Ingress
+apiVersion: route.openshift.io/v1
+kind: Route
 metadata:
+  annotations:
+    description: Route for application's https service.
+  labels:
+    application: {{ .Values.name }}
   name: {{ .Values.name }}
   namespace: {{ .Release.Namespace }}
-  annotations:
-     kubernetes.io/ingress.class: "nginx"
-     nginx.ingress.kubernetes.io/rewrite-target: /$2
 spec:
-  rules:
-  - http:
-      paths:
-      - path: /activemq(/|$)(.*)
-        backend:
-          serviceName: {{ .Values.name }}
-          servicePort: {{ .Values.docker.webPort }}
+  host: "activemq.{{ .Values.domain}}"
+  port:
+    targetPort: {{ .Values.docker.webPort }}
+  #tls:
+  #  termination: passthrough
+  to:
+    kind: Service
+    name: {{ .Values.name }}
+
