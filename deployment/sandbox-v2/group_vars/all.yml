@@ -200,7 +200,7 @@ databases:
     sql_path: '{{repos.websub.dest}}/db_scripts'
 
 nfs:
-  server: 51.79.202.117
+  server: 51.89.43.137
   folder: /srv/nfs/mosip
   provisioner: nfs-provisioner  # Name
 
