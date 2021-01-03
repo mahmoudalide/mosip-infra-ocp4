@@ -29,7 +29,8 @@ metadata:
   name: {{ .Values.component }}
   namespace: {{ .Values.ingress.namespace}} 
 spec:
-  host: "prereg.{{ .Values.domain}}"
+{{- range $index, $service := .Values.services }}
+  host: "{{ $service.ingressPath }}.{{ .Values.domain}}"
   port:
     targetPort: {{ $service.servicePort }} 
   #tls:
@@ -37,3 +38,4 @@ spec:
   to:
     kind: Service
     name: {{ $service.serviceName }}
+{{- end }}
