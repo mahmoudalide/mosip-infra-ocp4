@@ -4,7 +4,7 @@ activeProfileEnv: mz
 springConfigLabel: 1.1.2 ##not sure about this value
 configServerUrl: "http://config.apps.ocp.rnpdev.shop/config"
 artifactoryUrl: http://15.207.222.178
-iamAdapterUrl: http://15.207.222.178/artifactory/libs-snapshot-local/io/mosip/kernel/kernel-auth-adapter/1.2.0-SNAPSHOT/kernel-auth-adapter-1.2.0-20200918.164425-65.jar
+iamAdapterUrl: http://artifactory-service/artifactory/libs-snapshot-local/io/mosip/kernel/kernel-auth-adapter/1.2.0/kernel-auth-adapter-1.2.0-20200918.164425-65.jar
 probe:
   initialDelay: 120  # Seconds
   period: 30 # Seconds
