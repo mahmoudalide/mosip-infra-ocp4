@@ -14,7 +14,7 @@ isGlowroot: {{ is_glowroot }}
 dockerHub:
   private: {{ docker_hub.private }}  
   keyname: {{ docker_hub.keyname }}
-
+domain: {{ sandbox_domain_name }}
 services:
   auth:
     serviceName: {{ versions.services.kernel.auth.key }} 
