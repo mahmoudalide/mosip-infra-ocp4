@@ -1,0 +1,39 @@
+#apiVersion: networking.k8s.io/v1beta1
+#kind: Ingress
+#metadata:
+#  name: {{ .Values.component }}
+#  namespace: {{ .Values.ingress.namespace}} 
+#  annotations:
+#     kubernetes.io/ingress.class: "nginx"
+#     nginx.com/health-checks: "true"
+#spec:
+#  rules:
+#  - http:
+#      paths:
+#      {{- range $index, $service := .Values.services }}
+#        {{ if $service.ingressPath }}
+#      - path: {{ $service.ingressPath }} 
+#        backend:
+#          serviceName: {{ $service.serviceName }}
+#          servicePort: {{ $service.servicePort }} 
+#        {{ end }}
+#      {{- end }}
+#
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  annotations:
+    description: Route for application's https service.
+  labels:
+    application: {{ $service.serviceName }}
+  name: {{ .Values.component }}
+  namespace: {{ .Values.ingress.namespace}} 
+spec:
+  host: "prereg.{{ .Values.domain}}"
+  port:
+    targetPort: {{ $service.servicePort }} 
+  #tls:
+  #  termination: passthrough
+  to:
+    kind: Service
+    name: {{ $service.serviceName }}

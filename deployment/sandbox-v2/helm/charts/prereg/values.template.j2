@@ -1,0 +1,63 @@
+component: prereg
+part-of: mosip
+activeProfileEnv: mz
+springConfigLabel: {{ config_repo.version }} 
+configServerUrl: {{ config_server.internal_url }}
+probe:
+  initialDelay: 180  # Seconds
+  period: 30 # Seconds
+ingress:
+   namespace: default
+artifactoryUrl: {{ artifactory_url }} 
+imagePullPolicy: Always 
+isGlowroot: {{ is_glowroot }}
+
+dockerHub:
+  private: {{ docker_hub.private }}  
+  keyname: {{ docker_hub.keyname }}
+
+services:
+  application:
+    serviceName: {{ versions.services.prereg.application.key }} 
+    dockerImage: {{ versions.services.prereg.application.value }}
+    containerPort: 9090
+    servicePort: 80
+    ingressPath: /preregistration/v1
+    healthUrl: /preregistration/v1/actuator/health
+  batch:
+    serviceName: {{ versions.services.prereg.batch.key }} 
+    dockerImage: {{ versions.services.prereg.batch.value }}
+    containerPort: 9097
+    servicePort: 80
+    ingressPath: ""
+    #healthUrl: /preregistration/v1/actuator/health # TODO: No actuator?  
+  booking:
+    serviceName: {{ versions.services.prereg.booking.key }} 
+    dockerImage: {{ versions.services.prereg.booking.value }}
+    containerPort: 9095
+    servicePort: 80
+    ingressPath: /preregistration/v1/appointment
+    healthUrl: /preregistration/v1/actuator/health
+  datasync:
+    serviceName: {{ versions.services.prereg.datasync.key }} 
+    dockerImage: {{ versions.services.prereg.datasync.value }}
+    containerPort: 9094
+    servicePort: 80
+    ingressPath: /preregistration/v1/sync
+    healthUrl: /preregistration/v1/actuator/health
+  captcha:
+    serviceName: {{ versions.services.prereg.captcha.key }} 
+    dockerImage: {{ versions.services.prereg.captcha.value }}
+    containerPort: 9089
+    servicePort: 80
+    ingressPath: /preregistration/v1/captcha
+    healthUrl: /preregistration/v1/captcha/actuator/health
+  ui:
+    serviceName: {{ versions.services.prereg.ui.key }} 
+    dockerImage: {{ versions.services.prereg.ui.value }}
+    containerPort: 80
+    servicePort: 80
+    configName: prereg-ui-config # ConfigMap name
+    apiHost: https://{{ sandbox_domain_name }}/
+    ingressPath: /pre-registration-ui
+    
