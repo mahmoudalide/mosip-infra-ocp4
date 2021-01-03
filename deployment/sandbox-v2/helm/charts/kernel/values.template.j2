@@ -1,10 +1,10 @@
 component: kernel
 part-of: mosip
 activeProfileEnv: mz
-springConfigLabel: {{ config_repo.branch }}
+springConfigLabel: {{ config_repo.version }} 
 configServerUrl: {{ config_server.internal_url }}
-artifactoryUrl:{{ artifactory_url }}
-iamAdapterUrl: {{ artifactory_url }}
+artifactoryUrl: {{ artifactory_url }} 
+iamAdapterUrl: {{ iam_adapter_url }}
 probe:
   initialDelay: 120  # Seconds
   period: 30 # Seconds
@@ -12,7 +12,7 @@ imagePullPolicy: Always
 isGlowroot: {{ is_glowroot }} 
 
 dockerHub:
-  private: {{ docker_hub.private }}
+  private: {{ docker_hub.private }}  
   keyname: {{ docker_hub.keyname }}
 
 services:
