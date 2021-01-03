@@ -17,8 +17,8 @@ dockerHub:
 
 services:
   packet:
-    serviceName: {{ versions.services.packetmanager.service.keys()[0] }}
-    dockerImage: {{ versions.services.packetmanager.service.values()[0] }}
+    serviceName: {{ versions.services.packetmanager.service.key }}
+    dockerImage: {{ versions.services.packetmanager.service.value }}
     containerPort: 8093
     servicePort: 80
     ingressPath: /commons/v1/packetmanager
