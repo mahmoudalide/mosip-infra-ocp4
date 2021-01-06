@@ -9,7 +9,7 @@
 # Run DMZ regproc
 - hosts: console
   vars:
-    kube_config: '{{clusters.dmz.kube_config}}'
+    kube_config: '{{clusters.mz.kube_config}}'
     install_name: 'dmzregproc'
     helm_chart: '{{charts_root}}/dmzregproc'
     is_template: true  
