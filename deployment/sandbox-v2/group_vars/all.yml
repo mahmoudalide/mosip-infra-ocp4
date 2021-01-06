@@ -260,4 +260,4 @@ coredns:
   db: '{{tmp_dir}}/dns/sandbox_dns.db'
   image: coredns/coredns
 
-iam_adapter_url: https://github.com/mahmoudfali/mosip-config/raw/1.1.2/kernel-auth-adapter-1.1.2.jar
+iam_adapter_url: http://15.207.222.178/artifactory/libs-release-local/io/mosip/kernel/kernel-auth-adapter.jar
