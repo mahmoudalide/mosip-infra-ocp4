@@ -1,17 +1,21 @@
-apiVersion: route.openshift.io/v1
-kind: Route
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
 metadata:
+  name: {{ .Values.component }}
+  namespace: {{ .Release.Namespace }}
   annotations:
-    description: Route for application's https service.
-  labels:
-    application: {{ .Values.services.datashare.serviceName }}
-  name: {{ .Values.services.datashare.serviceName  }}
+     kubernetes.io/ingress.class: "nginx"
+     nginx.com/health-checks: "true"
 spec:
-  host: datashare.apps.ocp.rnpdev.shop
-  #port:
-  #  targetPort: 8097
-  #tls:
-  #  termination: passthrough
-  to:
-    kind: Service
-    name: {{ .Values.services.datashare.serviceName }}
+  rules:
+  - host: "datashare.{{ .Values.domain}}"
+    http:
+      paths:
+      {{- range $index, $service := .Values.services }}
+        {{ if $service.ingressPath }}
+      - path: {{ $service.ingressPath }} 
+        backend:
+          serviceName: {{ $service.serviceName }}
+          servicePort: {{ $service.servicePort }} 
+        {{ end }}
+      {{- end }}
