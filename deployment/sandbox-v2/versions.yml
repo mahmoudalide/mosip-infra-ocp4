@@ -125,16 +125,16 @@ versions:
 
     dmzregproc:  
       receiver:
-        key: 'regproc-packet-receiver-stage'
+        key: 'dmzregproc-packet-receiver-stage'
         value: 'mosipid/registration-processor-packet-receiver-stage:1.1.2'
       camel:
-        key: 'regproc-camel-stage'
+        key: 'dmzregproc-camel-stage'
         value: 'mosipid/registration-processor-common-camel-bridge:1.1.2'
       status:
-        key: 'regproc-registration-status-service'
+        key: 'dmzregproc-registration-status-service'
         value: 'mosipid/registration-processor-registration-status-service:1.1.2'
       pktserver:
-        key: 'regproc-dmz-packet-server'
+        key: 'dmzregproc-dmz-packet-server'
         value: 'mosipid/registration-processor-dmz-packet-server:1.0.9'
         
     ida:
