@@ -8,7 +8,7 @@ metadata:
      nginx.com/health-checks: "true"
 spec:
   rules:
-  - "pms.{{ .Values.domain}}"
+  - host: "pms.{{ .Values.domain}}"
     http:
       paths:
       {{- range $index, $service := .Values.services }}
