@@ -20,7 +20,7 @@ spec:
     metadata:
       labels:
         app: {{ .Values.services.camel.serviceName }} 
-        component: service-hazelcast-server
+        component: dmz-service-hazelcast-server
     spec:
       {{- include "dockerHubSecret" .  | indent 6}}
       containers:

@@ -21,7 +21,7 @@ spec:
     metadata:
       labels:
         app: {{ .Values.services.receiver.serviceName }} 
-        component: service-hazelcast-server
+        component: dmz-service-hazelcast-server
     spec:
       {{- include "dockerHubSecret" .  | indent 6}}
       containers:

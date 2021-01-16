@@ -4,10 +4,10 @@ apiVersion: v1
 kind: Service
 metadata:
   namespace: default
-  name: service-hazelcast-server
+  name: dmz-service-hazelcast-server
 spec:
   selector:
-    component: service-hazelcast-server
+    component: dmz-service-hazelcast-server
   clusterIP: None
   ports:
   - name: hz-port
