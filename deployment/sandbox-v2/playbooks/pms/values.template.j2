@@ -1,0 +1,48 @@
+component: pms
+part-of: mosip
+activeProfileEnv: mz 
+springConfigLabel: {{ config_repo.version }} 
+configServerUrl: {{ config_server.internal_url }}
+ingress:
+   namespace: default
+artifactoryUrl: {{ artifactory_url }} 
+probe:
+  initialDelay: 30  # Seconds
+  period: 30 # Seconds
+imagePullPolicy: Always
+
+isGlowroot: {{ is_glowroot }} 
+
+dockerHub:
+  private: {{ docker_hub.private }}  
+  keyname: {{ docker_hub.keyname }}
+
+services:
+  misp: 
+    serviceName: {{ versions.services.pms.misp.key }} 
+    dockerImage: {{ versions.services.pms.misp.value }}
+    containerPort: 9100
+    servicePort: 80
+    ingressPath: /partnermanagement/v1/misps
+    healthUrl: /partnermanagement/v1/misps/actuator/health
+  pm:
+    serviceName: {{ versions.services.pms.pm.key }} 
+    dockerImage: {{ versions.services.pms.pm.value }}
+    containerPort: 9102
+    servicePort: 80
+    ingressPath: /partnermanagement/v1/pmpartners
+    healthUrl: /partnermanagement/v1/pmpartners/actuator/health
+  partner:
+    serviceName: {{ versions.services.pms.partner.key }} 
+    dockerImage: {{ versions.services.pms.partner.value }}
+    containerPort: 9103
+    servicePort: 80
+    ingressPath: /partnermanagement/v1/partners
+    healthUrl: /partnermanagement/v1/partners/actuator/health
+  policy:
+    serviceName: {{ versions.services.pms.policy.key }} 
+    dockerImage: {{ versions.services.pms.policy.value }}
+    containerPort: 9101
+    servicePort: 80
+    ingressPath: /partnermanagement/v1/policies
+    healthUrl: /partnermanagement/v1/policies/actuator/health
