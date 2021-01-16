@@ -2,13 +2,13 @@ apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
   name: {{ .Values.component }}
-  namespace: {{ .Values.ingress.namespace}} 
+  namespace: {{ .Release.Namespace }}
   annotations:
      kubernetes.io/ingress.class: "nginx"
      nginx.com/health-checks: "true"
 spec:
   rules:
-  - host: "admin.{{ .Values.domain}}"
+  - host: "print.{{ .Values.domain}}"
     http:
       paths:
       {{- range $index, $service := .Values.services }}

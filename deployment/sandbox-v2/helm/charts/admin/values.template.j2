@@ -13,7 +13,7 @@ imagePullPolicy: Always
 sitePublicUrl: {{ site.sandbox_public_url }}
 internalDomain: {{ clusters.mz.nodeport_node }} 
 isGlowroot: {{ is_glowroot }} 
-
+domain: {{ sandbox_domain_name }}
 dockerHub:
   private: {{ docker_hub.private }}  
   keyname: {{ docker_hub.keyname }}
