@@ -243,7 +243,7 @@ config_repo:
 
 config_server:
   name: config-server
-  internal_url: http://config.apps.ocp.rnpdev.shop/config
+  internal_url: http://config-server/config
   ingress_url: http://config.apps.ocp.rnpdev.shop/config
   password: '{{secrets.config_repo.password}}'
 activemq:
