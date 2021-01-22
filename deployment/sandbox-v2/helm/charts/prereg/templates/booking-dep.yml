@@ -8,16 +8,16 @@ metadata:
     component: {{ .Values.component }} 
     
 spec:
-  replicas: 1
+  replicas: {{ .Values.services.booking.podconfig.replicas }} 
   selector:
     matchLabels:
       app: {{ .Values.services.booking.serviceName }} 
-  minReadySeconds: 10
+  minReadySeconds: {{ .Values.services.booking.podconfig.minReadySeconds }}
   strategy:
     type: RollingUpdate
     rollingUpdate:
-      maxUnavailable: 1
-      maxSurge: 1 
+      maxUnavailable: {{ .Values.services.booking.podconfig.maxUnavailable }}
+      maxSurge: {{ .Values.services.booking.podconfig.maxSurge }}
   template:
     metadata:
       labels:
@@ -39,6 +39,10 @@ spec:
           value: {{ .Values.artifactoryUrl }} 
         - name: is_glowroot_env
           value: {{ .Values.isGlowroot }}
+        - name: iam_adapter_url_env
+          value: {{ .Values.iamAdapterUrl }}
+        - name: mosipbox_public_url
+          value: {{ .Values.sitePublicUrl }}
         ports:
         - containerPort: {{ .Values.services.booking.containerPort }}
 

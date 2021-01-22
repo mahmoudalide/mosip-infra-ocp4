@@ -12,17 +12,18 @@ spec:
   selector:
     matchLabels:
       app: {{ .Values.services.notifier.serviceName }} 
-  minReadySeconds: 10
+  minReadySeconds: {{ .Values.services.notifier.podconfig.minReadySeconds }}
   strategy:
     type: RollingUpdate
     rollingUpdate:
-      maxUnavailable: 0 
-      maxSurge: 1 
+      maxUnavailable: {{ .Values.services.notifier.podconfig.maxUnavailable }}
+      maxSurge: {{ .Values.services.notifier.podconfig.maxSurge }}
   template:
     metadata:
       labels:
         app: {{ .Values.services.notifier.serviceName }} 
         component: {{ .Values.component }} 
+        exportLogs: {{ .Values.exportLogs }}
     spec:
       {{- include "dockerHubSecret" .  | indent 6}}
       containers:
@@ -40,8 +41,8 @@ spec:
           value: {{ .Values.artifactoryUrl }} 
         - name: is_glowroot_env
           value: {{ .Values.isGlowroot }} 
-        - name: iam_adapter_url_env
-          value: {{ .Values.iamAdapterUrl }}
+        - name: runtime_dep_url_env
+          value: {{ .Values.runtimeDepUrl }}
         ports:
         - containerPort: {{ .Values.services.notifier.containerPort }}
 #        readinessProbe:  # TODO: Disabled. for some reason not working.

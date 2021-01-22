@@ -7,7 +7,7 @@ The Ansible scripts here run MOSIP on a multi Virtual Machine (VM) setup.  The s
 _**WARNING**: The sandbox is not intented to be used for serious pilots or production.  Further, do not run the sandbox with any confidential data._
 
 ## Sandbox architecture
-![](https://github.com/mosip/mosip-infra-ocp4/blob/master/deployment/sandbox-v2/docs/sandbox_architecture.png)
+![](https://github.com/mosip/mosip-infra/blob/master/deployment/sandbox-v2/docs/sandbox_architecture.png)
 
 ## OS
 **CentOS 7.8** on all machines.
@@ -39,16 +39,16 @@ It is possible to bring up MOSIP modules with lesser VMs as below.  However, do 
 |K8s DMZ master | 1 | 4 vCPU, 8 GB RAM | 32 GB |
 |K8s DMZ workers | 1 | 4 vCPU, 16 GB RAM | 32 GB |
 
-## Vitrual Machines (VMs) setup
+## Virtual Machines (VMs) setup
 
 Before installing MOSIP modules you will have to set up your VMs as below:
 1. Install above mentioned OS on all machines
 1. Create user 'mosipuser' on console machine with password-less `sudo su`. 
-1. `hosntame` on all machines much match hostnames in `hosts.ini`.  Set the same with
+1. `hostname` on all machines must match hostnames in `hosts.ini`.  Set the same with
     ```
     $ sudo hostnamectl set-hostname <hostname>
     ```
-1. Enable Intenet connectivity on all machines. 
+1. Enable Internet connectivity on all machines. 
 1. Disable `firewalld` on all machines. 
 1. Exchange ssh keys between console and K8s cluster machines such that ssh is password-less from console machine:
     ```  
@@ -56,8 +56,8 @@ Before installing MOSIP modules you will have to set up your VMs as below:
     $[mosipuser@console.sb] ssh mosipuser@console.sb
     ```  
 1. Make console machine accessible via a public domain name (e.g. sandbox.mycompany.com).  This step may be skipped if you do not plan to access the sandbox externally. 
-1. Open ports 80, 443, 30090 (postgres) on console machine for external access.
-1. DNS: Setup a DNS server (or use cloud provider's DNS) such that console and nodes are accessible via their domain names listed in `hosts.ini`.  It is important to check if domain names are resolved from within pods of K8s cluster.  One way to check is after the cluster is up, deploy `utils/busybox.yml` pod, login into the pod and run the command `ping mzworker0.sb`.  DO NOT use `/etc/hosts` for domain name resolution, as name resolution will fail from within pods if this method is followed.
+1. Make sure datetime on all machines is in UTC.
+1. Open ports 80, 443, 30090 (postgres), 30616 (activemq), 53 (coredns) on console machine for external access.
 
 ## Terraform
 All the above is achieved using Terraform scripts available in `terraform/`.  At present, AWS scripts are being used and maintained.  It is highly recommended that you study the scripts in detail before running them. 
@@ -71,10 +71,10 @@ $ sudo yum install -y git
 * Git clone this repo in user home directory. Switch to the appropriate branch.  
 ```
 $ cd ~/
-$ git clone https://github.com/mosip/mosip-infra-ocp4
-$ cd mosip-infra-ocp4
+$ git clone https://github.com/mosip/mosip-infra
+$ cd mosip-infra
 $ git checkout 1.1.2
-$ cd mosip-infra-ocp4/deployment/sandbox-v2
+$ cd mosip-infra/deployment/sandbox-v2
 ```
 * Install Ansible and create shortcuts:
 ```
@@ -95,7 +95,7 @@ ssl:
   certificate_key: <private key path> 
 ```
 ### Network interface
-If your cluster machines use network interface other than "eth0", update it in `group_vars/mzcluster.yml` and `group_vars/dmzcluster.yml`:
+If your cluster machines use network interface other than "eth0", update it in `group_vars/k8s.yml`.
 ```
 network_interface: "eth0"
 ```
@@ -157,7 +157,7 @@ alias an='ansible-playbook -i hosts.ini --ask-vault-pass -e @secrets.yml'
 alias av='ansible-vault'
 alias kc1='kubectl --kubeconfig $HOME/.kube/mzcluster.config'
 alias kc2='kubectl --kubeconfig $HOME/.kube/dmzcluster.config'
-alias sb='cd $HOME/mosip-infra-ocp4/deployment/sandbox-v2/'
+alias sb='cd $HOME/mosip-infra/deployment/sandbox-v2/'
 alias helm1='helm --kubeconfig $HOME/.kube/mzcluster.config'
 alias helm2='helm --kubeconfig $HOME/.kube/dmzcluster.config'
 alias helmm='helm --kubeconfig $HOME/.kube/mzcluster.config -n monitoring'

@@ -5,7 +5,7 @@ metadata:
   labels:
     name: {{ .Values.persistence.volumeName }} 
 spec:
-  storageClassName: "nfs-provisioner"
+  storageClassName: ""
   capacity:
     storage: {{ .Values.persistence.size }}
   accessModes:

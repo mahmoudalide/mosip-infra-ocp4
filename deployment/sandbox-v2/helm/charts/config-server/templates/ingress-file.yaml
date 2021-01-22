@@ -1,17 +1,17 @@
-apiVersion: route.openshift.io/v1
-kind: Route
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
 metadata:
+  name: {{ .Values.component }}
+  namespace: {{ .Release.Namespace}} 
   annotations:
-    description: Route for application's https service.
-  labels:
-    application: {{ .Values.name }}
-  name: {{ .Values.name }}
+    kubernetes.io/ingress.class: "nginx"
+    nginx.com/health-checks: "true"
 spec:
-  host: "config.{{ .Values.domain}}"
-  port:
-    targetPort: {{ .Values.docker.containerPort }}
-  #tls:
-  #  termination: passthrough
-  to:
-    kind: Service
-    name: {{ .Values.name }}
+  rules:
+  - http:
+      paths:
+      - path: /config
+        backend:
+          serviceName: {{ .Values.name }} 
+          servicePort: 80 
+

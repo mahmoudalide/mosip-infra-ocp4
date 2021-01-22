@@ -45,6 +45,7 @@ spec:
       labels:
         app: {{ template "minio.name" . }}
         release: {{ .Release.Name }}
+        exportLogs: {{ .Values.exportLogs }}
 {{- if .Values.podLabels }}
 {{ toYaml .Values.podLabels | indent 8 }}
 {{- end }}
@@ -59,6 +60,24 @@ spec:
       priorityClassName: "{{ .Values.priorityClassName }}"
   {{- end }}
       serviceAccountName: {{ include "minio.serviceAccountName" . | quote }}
+{{ if eq .Values.nodeAffinity.enabled true }}
+      tolerations:
+      - key: {{ .Values.nodeAffinity.taint.key }}
+        operator: "Equal"
+        value: {{ .Values.nodeAffinity.taint.value }}
+        effect: "NoSchedule"
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: kubernetes.io/hostname
+                operator: In
+                values:
+                -  {{ .Values.nodeAffinity.node }}
+{{ end }}
+
+
 {{- if and .Values.securityContext.enabled .Values.persistence.enabled }}
       securityContext:
         runAsUser: {{ .Values.securityContext.runAsUser }}

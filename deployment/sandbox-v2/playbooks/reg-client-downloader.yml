@@ -15,7 +15,7 @@
 # Convert helm template to helm values 
 - hosts: console
   vars:
-    kube_config: '{{clusters.mz.kube_config}}'
+    kube_config: '{{clusters.dmz.kube_config}}'
     install_name: 'reg-client-downloader' 
     helm_chart: '{{charts_root}}/reg-client-downloader'
     is_template: true  

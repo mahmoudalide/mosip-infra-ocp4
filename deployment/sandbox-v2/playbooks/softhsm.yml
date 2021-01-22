@@ -15,7 +15,7 @@
 # Convert helm template to helm values 
 - hosts: console
   vars:
-    kube_config: '/root/.kube/kubeconfig'
+    kube_config: '{{kube_config}}'
     install_name: 'softhsm-{{hsm_prop.label}}' 
     helm_chart: '{{charts_root}}/softhsm'
     is_template: true  
