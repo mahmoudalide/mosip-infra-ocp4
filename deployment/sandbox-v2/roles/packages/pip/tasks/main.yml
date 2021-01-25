@@ -1,12 +1,12 @@
-- name: Install pip2
+- name: Install pip3
   yum:
-    name: python-pip
+    name: python3-pip
     state: latest
   become: yes
 
 - name: pip self-update
   pip:
-    name: pip
+    name: pip3
     state: latest
   become: yes
  
