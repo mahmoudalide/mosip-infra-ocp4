@@ -1,5 +1,5 @@
 - name: Install openshift
   yum:
-    name: python-openshift
+    name: python3-openshift
   become: yes
 
