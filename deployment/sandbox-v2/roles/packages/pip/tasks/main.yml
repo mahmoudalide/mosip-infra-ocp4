@@ -6,7 +6,7 @@
 
 - name: pip self-update
   pip:
-    name: pip3
+    name: pip
     state: latest
   become: yes
  
