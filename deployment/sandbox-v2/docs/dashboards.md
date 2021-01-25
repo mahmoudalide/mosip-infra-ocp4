@@ -13,7 +13,7 @@ As part of sandbox installation a default dashboard is installed to view logs of
 * Dashboard links:
     * MZ: `https://<sandbox domain name>/mz-dashboard`
     * DMZ: `https://<sandbox domain name>/dmz-dashboard`
-* The tokens for above dashboards are available on the console machine at `/home/mosipuser/mosip-infra/deployment/sandbox-v2/tmp`.  Two tokens are generated for each dashboard - admin and view-only.  The view-only has restricted privileges.
+* The tokens for above dashboards are available on the console machine at `/home/mosipuser/mosip-infra-ocp4/deployment/sandbox-v2/tmp`.  Two tokens are generated for each dashboard - admin and view-only.  The view-only has restricted privileges.
 
 ## Grafana
 * Link:
