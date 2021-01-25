@@ -4,6 +4,7 @@
 - name: Add user nfsnobody
   user:
     name: nfsnobody 
+  become: yes
 
 - name: Create nfs mount folder
   file:
