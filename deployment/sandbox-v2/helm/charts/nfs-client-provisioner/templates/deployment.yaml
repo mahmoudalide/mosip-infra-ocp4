@@ -24,7 +24,6 @@ spec:
       labels:
         app: {{ template "nfs-client-provisioner.name" . }}
         release: {{ .Release.Name }}
-        exportLogs: {{ .Values.exportLogs }}
     spec:
       serviceAccountName: {{ template "nfs-client-provisioner.serviceAccountName" . }}
       {{- if .Values.nodeSelector }}
