@@ -299,7 +299,7 @@ config_server:
 
 activemq:
   name: activemq
-  nodeport: 30616  # Arbitrary
+  nodeport: 300616  # Arbitrary
   container_port: 61616
   nfs_path: '{{nfs.folder}}/activemq/'
   admin_password: '{{secrets.activemq.admin}}'
