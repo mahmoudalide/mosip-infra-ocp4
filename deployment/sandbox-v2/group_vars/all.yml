@@ -61,7 +61,7 @@ docker:
 
 clusters:
   mz:
-    kube_config:  "{{lookup('env', 'HOME') }}/.kube/mzcluster.config" 
+    kube_config:  '{{user_home}}/.kube/mzcluster.config'
     nodeport_node: '192.168.50.13'
     ingress:
       namespace: ingress-nginx
