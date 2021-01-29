@@ -12,7 +12,8 @@ metadata:
     ingress.kubernetes.io/class: nginx
 spec:
   rules:
-  - http:
+  - host: "minio.{{ .Values.domain}}"
+    http:
       paths:
       - path: /minio  # To browser
         backend:

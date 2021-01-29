@@ -5,7 +5,7 @@ metadata:
   labels:
     name: {{ .Values.persistence.volumeName }} 
 spec:
-  storageClassName: ""
+  storageClassName: {{ .Values.sc.name }} 
   capacity:
     storage: {{ .Values.persistence.size }}
   accessModes:
