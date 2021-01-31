@@ -26,10 +26,10 @@
 # MOSIP modules
 #- import_playbook: playbooks/config-server.yml    
 #- import_playbook: playbooks/kernel.yml
-#- import_playbook: playbooks/packetmanager.yml
-#- import_playbook: playbooks/datashare.yml
+- import_playbook: playbooks/packetmanager.yml
+- import_playbook: playbooks/datashare.yml
 - import_playbook: playbooks/prereg.yml
-#- import_playbook: play54books/regproc.yml
+- import_playbook: playbooks/regproc.yml
 #- import_playbook: playbooks/ida.yml
 #- import_playbook: playbooks/idrepo.yml
 #- import_playbook: playbooks/pms.yml
