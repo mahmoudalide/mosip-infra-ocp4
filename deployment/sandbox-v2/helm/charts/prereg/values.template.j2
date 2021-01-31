@@ -10,7 +10,7 @@ ingress:
    namespace: default
 artifactoryUrl: {{ artifactory_url }} 
 iamAdapterUrl: {{ iam_adapter_url }}
-sitePublicUrl: "http://prereg.{{ site.sandbox_public_url }}"
+sitePublicUrl: "http://kernel.{{ site.sandbox_public_url }}"
 imagePullPolicy: Always 
 isGlowroot: {{ is_glowroot }}
 exportLogs: enabled  # Let filebeat export the logs
@@ -67,7 +67,7 @@ services:
     containerPort: 80
     servicePort: 80
     configName: prereg-ui-config # ConfigMap name
-    apiHost: http://prereg.{{ sandbox_domain_name }}
+    apiHost: http://prereg.{{ sandbox_domain_name }}/
     ingressPath: /pre-registration-ui
     podconfig: {{ podconfig.prereg.ui | to_yaml }}
     
