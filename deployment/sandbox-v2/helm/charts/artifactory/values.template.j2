@@ -14,3 +14,4 @@ services:
     podconfig: {{ podconfig.artifactory.service | to_yaml }}
 
 exportLogs: enabled  # Let filebeat export the logs
+domain: {{ sandbox_domain_name }}
