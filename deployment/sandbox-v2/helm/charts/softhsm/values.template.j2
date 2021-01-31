@@ -18,7 +18,7 @@ confFile: {{hsm_prop.conf_file}}
 mountPath: /softhsm  # path inside docker
 
 sc:
-  name: ""
+  name: "nfs-provisioner"
 pv:
   name: softhsm-{{hsm_prop.label}}-pv
   size: 20Mi
