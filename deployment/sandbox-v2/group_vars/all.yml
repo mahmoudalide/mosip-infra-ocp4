@@ -294,7 +294,7 @@ config_repo:
 config_server:
   name: config-server
   internal_url: http://config-server/config
-  ingress_url: 'config.{{sandbox_domain_name}}/config'
+  ingress_url: 'http://mosip.{{sandbox_domain_name}}/config'
   encrypt_key: '{{secrets.config_server.encrypt_key}}'
 
 activemq:
