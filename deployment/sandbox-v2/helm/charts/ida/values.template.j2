@@ -25,8 +25,8 @@ dockerHub:
 
 services:
   auth:
-    serviceName: {{ versions.services.ida.auth.keys()[0] }} 
-    dockerImage: {{ versions.services.ida.auth.values()[0] }}
+    serviceName: {{ versions.services.ida.auth.name }} 
+    dockerImage: {{ versions.services.ida.auth.image }}
     containerPort: 8090
     servicePort: 80
     hsmUrl: tcp://softhsm-ida:80   # Should match with softhsm chart service name and port (see, ida.yml and role/softhsm)
@@ -36,8 +36,8 @@ services:
     hsmClientZipPath: {{ hsm_client_zip_path }}
 
   internal: 
-    serviceName: {{ versions.services.ida.internal.keys()[0] }} 
-    dockerImage: {{ versions.services.ida.internal.values()[0] }}
+    serviceName: {{ versions.services.ida.internal.name }} 
+    dockerImage: {{ versions.services.ida.internal.image }}
     containerPort: 8093
     servicePort: 80
     hsmUrl: tcp://softhsm-ida:80   
@@ -47,8 +47,8 @@ services:
     hsmClientZipPath: {{ hsm_client_zip_path }}
 
   kyc: 
-    serviceName: {{ versions.services.ida.kyc.keys()[0] }} 
-    dockerImage: {{ versions.services.ida.kyc.values()[0] }}
+    serviceName: {{ versions.services.ida.kyc.name }} 
+    dockerImage: {{ versions.services.ida.kyc.image }}
     containerPort: 8091
     servicePort: 80
     hsmUrl: tcp://softhsm-ida:80   
@@ -58,8 +58,8 @@ services:
     hsmClientZipPath: {{ hsm_client_zip_path }}
 
   otp: 
-    serviceName: {{ versions.services.ida.otp.keys()[0] }} 
-    dockerImage: {{ versions.services.ida.otp.values()[0] }}
+    serviceName: {{ versions.services.ida.otp.name }} 
+    dockerImage: {{ versions.services.ida.otp.image }}
     containerPort: 8092
     servicePort: 80
     hsmUrl: tcp://softhsm-ida:80   
@@ -70,8 +70,9 @@ services:
 
 generators:
   keygen:  
-    name: {{ versions.services.ida.keygen.keys()[0] }} 
-    dockerImage: {{ versions.services.ida.keygen.values()[0] }}
+    name: {{ versions.services.ida.keygen.name }} 
+    dockerImage: {{ versions.services.ida.keygen.image }}
     hsmUrl: tcp://softhsm-ida:80
     hsmClientZipPath: {{ hsm_client_zip_path }}
    
+domain: {{ sandbox_domain_name }}
