@@ -36,7 +36,7 @@
 #- import_playbook: playbooks/pms.yml
 #- import_playbook: playbooks/resident.yml
 #- import_playbook: playbooks/admin.yml
-- import_playbook: playbooks/print.yml
-- import_playbook: playbooks/mock-abis.yml
+#- import_playbook: playbooks/print.yml
+#- import_playbook: playbooks/mock-abis.yml
 # Regclient downloader
-#- import_playbook: playbooks/reg-client-downloader.yml
+- import_playbook: playbooks/reg-client-downloader.yml
