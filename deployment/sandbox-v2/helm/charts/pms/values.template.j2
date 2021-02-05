@@ -23,8 +23,8 @@ dockerHub:
 
 services:
   misp: 
-    serviceName: {{ versions.services.pms.misp.keys()[0] }} 
-    dockerImage: {{ versions.services.pms.misp.values()[0] }}
+    serviceName: {{ versions.services.pms.misp.name }} 
+    dockerImage: {{ versions.services.pms.misp.image }}
     containerPort: 9100
     servicePort: 80
     ingressPath: /partnermanagement/v1/misps
@@ -32,8 +32,8 @@ services:
     podconfig: {{ podconfig.pms.misp | to_yaml }}
 
   pm:
-    serviceName: {{ versions.services.pms.pm.keys()[0] }} 
-    dockerImage: {{ versions.services.pms.pm.values()[0] }}
+    serviceName: {{ versions.services.pms.pm.name }} 
+    dockerImage: {{ versions.services.pms.pm.image }}
     containerPort: 9102
     servicePort: 80
     ingressPath: /partnermanagement/v1/pmpartners
@@ -41,8 +41,8 @@ services:
     podconfig: {{ podconfig.pms.pm | to_yaml }}
 
   partner:
-    serviceName: {{ versions.services.pms.partner.keys()[0] }} 
-    dockerImage: {{ versions.services.pms.partner.values()[0] }}
+    serviceName: {{ versions.services.pms.partner.name }} 
+    dockerImage: {{ versions.services.pms.partner.image }}
     containerPort: 9103
     servicePort: 80
     ingressPath: /partnermanagement/v1/partners
@@ -50,10 +50,11 @@ services:
     podconfig: {{ podconfig.pms.partner | to_yaml }}
 
   policy:
-    serviceName: {{ versions.services.pms.policy.keys()[0] }} 
-    dockerImage: {{ versions.services.pms.policy.values()[0] }}
+    serviceName: {{ versions.services.pms.policy.name }} 
+    dockerImage: {{ versions.services.pms.policy.image }}
     containerPort: 9101
     servicePort: 80
     ingressPath: /partnermanagement/v1/policies
     healthUrl: /partnermanagement/v1/policies/actuator/health
     podconfig: {{ podconfig.pms.policy | to_yaml }}
+domain: {{ sandbox_domain_name }}
