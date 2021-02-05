@@ -21,7 +21,7 @@ upgrade_server: {{ site.sandbox_public_url }}
 healthcheck: "{{ site.sandbox_public_url }}/vi/authmanager/actuator/health"
 
 sc:
-  name: ""
+  name: "nfs-provisioner"
 pv:
   name: reg-client-downloader
   size: 2Mi
