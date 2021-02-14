@@ -15,4 +15,7 @@ spec:
         backend:
           serviceName: {{ .Values.name }} 
           servicePort: 80 
-
+  tls:
+  - hosts:
+    - "mosip.{{ .Values.domain}}"
+    secretName: router-ca
