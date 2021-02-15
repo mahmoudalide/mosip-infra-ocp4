@@ -5,10 +5,10 @@ keycloakUser: {{ keycloak.user }}
 keycloakPassword: '' # To be passed directly with helm command
 domain: "mosip.{{ sandbox_domain_name }}"
 internalDomain: {{ clusters.mz.nodeport_node }} 
-keycloakExternalUrl: "https://mosip.{{ sandbox_domain_name }}/keycloak/auth/"  
+keycloakExternalUrl: "https://keycloak.{{ sandbox_domain_name }}/auth/"  
 containerPort: 8443
 exportLogs: enabled  # Let filebeat export the logs
-servicePort: 80
+servicePort: 8443
 db:
   name: {{ keycloak.db.name }}
   host: {{ keycloak.db.host }}

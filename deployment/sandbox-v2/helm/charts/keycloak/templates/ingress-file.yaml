@@ -3,41 +3,39 @@
 # https://public_server/keycloak/auth/, rather than
 # https://public_server/auth/.  Not that last slash is important!
 
-apiVersion: networking.k8s.io/v1beta1
-kind: Ingress
+#apiVersion: networking.k8s.io/v1beta1
+#kind: Ingress
+#metadata:
+#  name: keycloak
+#  namespace: {{ .Values.ingress.namespace }} 
+#  annotations:
+#    ingress.kubernetes.io/class: nginx
+#    nginx.ingress.kubernetes.io/rewrite-target: /$2
+#spec:
+#  rules:
+#  - http:
+#      paths:
+#      - path: /keycloak(/|$)(.*)
+#        backend:
+#          serviceName: {{ .Values.name }}
+#          servicePort: {{ .Values.servicePort }} 
+apiVersion: route.openshift.io/v1
+kind: Route
 metadata:
-  name: keycloak
   namespace: {{ .Values.ingress.namespace }} 
   annotations:
-    ingress.kubernetes.io/class: nginx
-    nginx.ingress.kubernetes.io/rewrite-target: /$2
+    description: Route for application's https service.
+  labels:
+    application: {{ .Values.name }}
+  name: keycloak
 spec:
+  host: {{ .Values.domain}}
   tls:
-  - hosts:
-      - mosip.{{ .Values.domain}}
-    secretName: router-ca
-  rules:
-  - host: {{ .Values.domain}}
-    http:
-      paths:
-      - path: /keycloak(/|$)(.*)
-        backend:
-          serviceName: {{ .Values.name }}
-          servicePort: {{ .Values.servicePort }}
-           
-##apiVersion: route.openshift.io/v1
-##kind: Route
-##metadata:
-##  namespace: {{ .Values.ingress.namespace }} 
-##  annotations:
-##    description: Route for application's https service.
-##  labels:
-##    application: {{ .Values.name }}
-##  name: keycloak
-##spec:
-##  host: {{ .Values.domain}}
-##  port:
-##    targetPort: 8080
-##  to:
-##    kind: Service
-##    name: {{ .Values.name }}
+    termination: passthrough
+  port:
+    targetPort: 8080
+  to:
+    kind: Service
+    name: {{ .Values.name }}
+
+  
