@@ -3,10 +3,10 @@ dockerImage: jboss/keycloak
 dockerTag: 9.0.0 
 keycloakUser: {{ keycloak.user }}
 keycloakPassword: '' # To be passed directly with helm command
-domain: "keycloak.{{ sandbox_domain_name }}"
+domain: "mosip.{{ sandbox_domain_name }}"
 internalDomain: {{ clusters.mz.nodeport_node }} 
-keycloakExternalUrl: "http://keycloak.{{ sandbox_domain_name }}/auth/"  
-containerPort: 8080
+keycloakExternalUrl: "https://mosip.{{ sandbox_domain_name }}/keycloak/auth/"  
+containerPort: 8443
 exportLogs: enabled  # Let filebeat export the logs
 servicePort: 80
 db:
