@@ -14,7 +14,7 @@ metadata:
 spec:
   tls:
   - hosts:
-      - "https://mosip.{{ .Values.domain}}"
+      - mosip.{{ .Values.domain}}
     secretName: router-ca
   rules:
   - host: {{ .Values.domain}}
