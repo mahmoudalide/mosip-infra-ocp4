@@ -37,5 +37,3 @@ spec:
   to:
     kind: Service
     name: {{ .Values.name }}
-
-  
