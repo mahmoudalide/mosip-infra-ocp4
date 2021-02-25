@@ -31,7 +31,8 @@ metadata:
 spec:
   host: {{ .Values.domain}}
   tls:
-    termination: passthrough
+    termination: reencrypt
+    insecureEdgeTerminationPolicy: Redirect
   port:
     targetPort: 8443
   to:
