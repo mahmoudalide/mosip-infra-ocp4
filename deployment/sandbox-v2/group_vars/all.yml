@@ -110,8 +110,8 @@ minio:
 keycloak:
   user: admin
   password: '{{secrets.keycloak.password}}'
-  url: 'https://mosip.apps.ocp.rnpdev.shop/keycloak'
-  external_url: 'https://mosip.apps.ocp.rnpdev.shop/keycloak'
+  url: 'http://keycloak.apps.ocp.rnpdev.shop'
+  external_url: 'http://keycloak.apps.ocp.rnpdev.shop'
   db:  # Assumed postgres 
     name: 'keycloak'  
     host: '{{postgres.host}}'  

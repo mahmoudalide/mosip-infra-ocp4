@@ -44,13 +44,9 @@ spec:
         - name: DB_PASSWORD
           value: {{ .Values.db.password }} 
         - name: KEYCLOAK_FRONTEND_URL
-          value: {{ .Values.keycloakExternalUrl }}   
+          value: {{ .Values.keycloakExternalUrl }}  
         ports:
-        - containerPort: 8080
-          protocol: TCP
-        - containerPort: 8443
-          name: https
-          protocol: TCP
+        - containerPort: {{ .Values.containerPort }} 
         readinessProbe:
           tcpSocket:
             port: {{ .Values.containerPort }}  # All defaults used
