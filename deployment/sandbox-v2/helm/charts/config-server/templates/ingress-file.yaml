@@ -18,4 +18,4 @@ spec:
   tls:
   - hosts:
     - "mosip.{{ .Values.domain}}"
-    secretName: router-ca
+    secretName: selfsigned-cert-tls

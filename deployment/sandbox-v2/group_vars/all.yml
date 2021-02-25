@@ -16,7 +16,7 @@ podconfig_file: '{{install_root}}/podconfig.yml'
 sandbox_domain_name: apps.ocp.rnpdev.shop
 internal_domain_name: '{{ansible_host}}'  # IP address of console
 site:
-  sandbox_public_url: 'http://mosip.{{sandbox_domain_name}}'  # The public url needs to point to nginx on console
+  sandbox_public_url: 'https://mosip.{{sandbox_domain_name}}'  # The public url needs to point to nginx on console
   sandbox_internal_url: 'http://{{internal_domain_name}}'  # Pointing to nginx which runs on console
   sandbox_internal_tld: 'sb'  # Top-level domain name.  This much match tld of all hosts in hosts.ini
   ingress_tld: 'ingress'  # Fixed. Don't change this!
