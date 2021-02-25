@@ -19,3 +19,7 @@ spec:
         backend:
           serviceName: {{ template "minio.fullname" . }}
           servicePort: {{ .Values.service.port }} 
+  tls:
+  - hosts:
+    - "mosip.{{ .Values.domain}}"
+    secretName: selfsigned-cert-tls

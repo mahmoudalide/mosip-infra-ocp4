@@ -14,3 +14,7 @@ spec:
         backend:
           serviceName: {{ .Values.name }}
           servicePort: {{ .Values.docker.webPort }}
+  tls:
+  - hosts:
+    - "mosip.{{ .Values.domain}}"
+    secretName: selfsigned-cert-tls
