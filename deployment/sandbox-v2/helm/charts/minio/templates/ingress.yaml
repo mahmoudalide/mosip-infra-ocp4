@@ -10,6 +10,7 @@ metadata:
   namespace: {{ .Release.Namespace }}
   annotations:
     ingress.kubernetes.io/class: nginx
+    cert-manager.io/cluster-issuer: "letsencrypt-staging"
 spec:
   rules:
   - host: "mosip.{{ .Values.domain}}"
@@ -22,4 +23,4 @@ spec:
   tls:
   - hosts:
     - "mosip.{{ .Values.domain}}"
-    secretName: selfsigned-cert-tls
+    secretName: letsencrypt-staging-certificate
