@@ -7,6 +7,10 @@ metadata:
      kubernetes.io/ingress.class: "nginx"
      nginx.com/health-checks: "true"
 spec:
+  tls:
+  - hosts:
+    - "mosip.{{ .Values.domain}}"
+    secretName: selfsigned-cert-tls
   rules:
   - host: "mosip.{{ .Values.domain}}"
     http:
@@ -19,4 +23,3 @@ spec:
           servicePort: {{ $service.ports.servicePort }} 
         {{ end }}
       {{- end }}
-
