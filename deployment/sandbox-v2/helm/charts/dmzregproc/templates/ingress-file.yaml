@@ -11,7 +11,7 @@ spec:
   tls:
   - hosts:
     - "mosip.{{ .Values.domain}}"
-    secretName: letsencrypt-staging-cert-tls
+    secretName: letsencrypt-staging-certificate
   rules:
   - host: "mosip.{{ .Values.domain}}"
     http:
