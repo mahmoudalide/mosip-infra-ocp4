@@ -19,4 +19,4 @@ spec:
   tls:
   - hosts:
     - "mosip.{{ .Values.domain}}"
-    secretName: letsencrypt-staging-certificate
+    secretName: cloudflare-tls
