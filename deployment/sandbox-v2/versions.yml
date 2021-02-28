@@ -8,7 +8,7 @@ versions:
         image:  'mosipid/kernel-auth-service:1.1.3'
       masterdata:
         name: 'kernel-masterdata-service'
-        image: 'mosipid/kernel-masterdata-service:1.1.3'
+        image: 'ckm007/kernel-masterdata-service:1.1.3_patch'
       idgen:
         name: 'kernel-idgenerator-service'
         image: 'mosipid/kernel-idgenerator-service:1.1.3'
@@ -17,7 +17,7 @@ versions:
         image: 'mosipid/kernel-pridgenerator-service:1.1.3'
       sync:
         name: 'kernel-syncdata-service'
-        image: 'mosipid/kernel-syncdata-service:1.1.3'
+        image: 'mosipdev/kernel-syncdata-service:1.1.4'
       audit :
         name: 'kernel-auditmanager-service'
         image: 'mosipid/kernel-auditmanager-service:1.1.3'
