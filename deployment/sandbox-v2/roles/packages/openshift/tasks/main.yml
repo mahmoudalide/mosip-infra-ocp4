@@ -1,5 +1,5 @@
 - name: Install openshift
-  yum:
-    name: python-openshift
+  pip:
+    name: openshift
+    executable: /bin/pip3
   become: yes
-
