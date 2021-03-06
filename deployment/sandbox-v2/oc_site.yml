@@ -4,7 +4,7 @@
 
 # Console
 - import_playbook: playbooks/console.yml  # Basic setup on console machine
-# - import_playbook: playbooks/nfs.yml 
+- import_playbook: playbooks/nfs.yml 
 # # MZ cluster
 # - import_playbook: playbooks/mz-nfs-provisioner.yml
 # # DMZ cluster
