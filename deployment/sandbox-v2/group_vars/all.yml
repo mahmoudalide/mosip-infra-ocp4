@@ -3,7 +3,7 @@
 # Global variables - accessed by different roles and plays
 #
 user_home: '{{lookup("env", "HOME")}}'
-install_root: '{{user_home}}/mosip-infra/deployment/sandbox-v2'
+install_root: '{{user_home}}/mosip-infra-ocp4/deployment/sandbox-v2'
 tmp_dir: '{{install_root}}/tmp/'
 logs_dir: '{{tmp_dir}}/logs'
 tmp_yamls: '{{tmp_dir}}/yaml'
