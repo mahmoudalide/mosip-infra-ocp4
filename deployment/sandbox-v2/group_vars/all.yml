@@ -13,10 +13,10 @@ artifactory_url: http://artifactory-service/
 versions_file: '{{install_root}}/versions.yml' 
 podconfig_file: '{{install_root}}/podconfig.yml'
 
-sandbox_domain_name: minibox.mosip.net
+sandbox_domain_name: apps.ocp.rnpdev.shop
 internal_domain_name: '{{ansible_host}}'  # IP address of console
 site:
-  sandbox_public_url: 'https://{{sandbox_domain_name}}'  # The public url needs to point to nginx on console
+  sandbox_public_url: 'https://mosip.{{sandbox_domain_name}}'  # The public url needs to point to nginx on console
   sandbox_internal_url: 'https://{{internal_domain_name}}'  # Pointing to nginx which runs on console
   sandbox_internal_tld: 'sb'  # Top-level domain name.  This much match tld of all hosts in hosts.ini
   ingress_tld: 'ingress'  # Fixed. Don't change this!
@@ -62,41 +62,7 @@ docker:
 clusters:
   mz:
     kube_config:  "{{lookup('env', 'HOME') }}/.kube/mzcluster.config" 
-    nodeport_node: '{{groups.mzworkers[0]}}'  # Any node on cluster for nodeport access
-    ingress:
-      namespace: ingress-nginx
-      nodeports:
-        http: 30080 
-        https: 30443
-      node_alias: "{{'mz.' + site.ingress_tld}}" # Hardcoded, mapped to one of the nodes below in coredns config
-      base_url: 'http://{{groups.mzworkers[0]}}:30080' # Any node since ingress runs on nodeport
-    dashboard:
-      url: /mz-dashboard
-      token_expiry: 86400 # Seconds
-      nodeport: 30081  # Dashboard runs on nodeport 
-    monitoring:
-      enabled: true
-      namespace: monitoring
-      nfs:
-        server: '{{nfs.server}}'
-        prometheus:
-          alert_path: '{{nfs.folder}}/monitoring/mz/prometheus/alertmanager'
-          push_path: '{{nfs.folder}}/monitoring/mz/prometheus/pushgateway'
-          server_path: '{{nfs.folder}}/monitoring/mz/prometheus/server'
-        grafana:
-          path: '{{nfs.folder}}/monitoring/mz/grafana'
-      grafana_ingress_path: 'mz-grafana'
-      grafana_token_file: '{{tmp_dir}}/grafana_mz.token'
-      grafana:
-        alerts:
-          # channel name of slack for sending alerts, example:
-          channel: prometheus_alerts
-          #webhook url of the same slack channel, example:
-          url: https://hooks.slack.com/services/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
-      elasticsearch:
-        host: 'elasticsearch-master:9200'
-      kibana: 
-        url: http://kibana-kibana:5601 
+    nodeport_node: '192.168.50.13'  # Any node on cluster for nodeport access
     kafka:
       nfs_path: '{{nfs.folder}}/mz/kafka'  
       size: 8Gi 
@@ -110,35 +76,7 @@ clusters:
       zookeeper_size: 2Gi 
   dmz:
     kube_config:  "{{lookup('env', 'HOME') }}/.kube/dmzcluster.config" 
-    nodeport_node: '{{groups.dmzworkers[0]}}'  # Any node on cluster for nodeport access
-    ingress:
-      namespace: ingress-nginx
-      nodeports:
-        http: 30080 
-        https: 30443
-      node_alias: "{{'dmz.' + site.ingress_tld}}" # Hardcoded, mapped to one of the nodes below in coredns config
-      base_url: 'http://{{groups["dmzworkers"][0]}}:30080' # Any node since ingress runs on nodeport
-    dashboard: 
-      url: /dmz-dashboard
-      token_expiry: 86400 # Seconds 
-      nodeport: 30081  # Dashboard runs on nodeport 
-    monitoring:
-      enabled: true
-      namespace: monitoring
-      nfs:
-        server: '{{nfs.server}}'
-        prometheus:
-          alert_path: '{{nfs.folder}}/monitoring/dmz/prometheus/alertmanager'
-          push_path: '{{nfs.folder}}/monitoring/dmz/prometheus/pushgateway'
-          server_path: '{{nfs.folder}}/monitoring/dmz/prometheus/server'
-        grafana:
-          path: '{{nfs.folder}}/monitoring/dmz/grafana'
-      grafana_ingress_path: 'dmz-grafana'
-      grafana_token_file: '{{tmp_dir}}/grafana_dmz.token'
-      elasticsearch:
-        host: '{{groups.mzworkers[0]}}:30080/elasticsearch' # Connect to elasticsearch on MZ
-      kibana: 
-        url: 'http://{{groups.mzworkers[0]}}:30601'  # Kibana runs on this nodeport on MZ.
+    nodeport_node: '192.168.50.13'  # Any node on cluster for nodeport access
     kafka:
       nfs_path: '{{nfs.folder}}/dmz/kafka'  
       size: 8Gi 
@@ -198,8 +136,8 @@ minio:
 keycloak:
   user: admin
   password: '{{secrets.keycloak.password}}'
-  url: '{{clusters.mz.ingress.base_url}}/keycloak'
-  external_url: '{{ site.sandbox_public_url }}/keycloak'
+  url: 'http://keycloak.apps.ocp.rnpdev.shop' #'{{clusters.mz.ingress.base_url}}/keycloak'
+  external_url: 'http://keycloak.apps.ocp.rnpdev.shop' #'{{ site.sandbox_public_url }}/keycloak'
   db:  # Assumed postgres 
     name: 'keycloak'  
     host: '{{postgres.host}}'  
@@ -368,21 +306,21 @@ config_repo:
   # If local_git_repo=true, a copy of git repo at `git_repo_uri` gets created on console machine and 
   # config server points to the same. Any changes done on local repo and will not  get reflected in 
   # the parent git repo. 
-  git_repo_uri: https://github.com/mosip/mosip-config
+  git_repo_uri: https://github.com/mahmoudfali/mosip-config
   version: 1.1.4
   private: false #  true if repo is private
   gitusername: '' # if private==true set username here and password in secrets as below
   gitpassword: '{{secrets.config_repo.password}}'
   search_folders: sandbox # Subdir in repo containing properties
   local_git_repo:
-    enabled: false
+    enabled: true
     path: '{{nfs.folder}}/mosip-config'
     storage_size: 10Mi
 
 config_server:
   name: config-server
   internal_url: http://config-server/config
-  ingress_url: '{{clusters.mz.ingress.base_url}}/config'
+  ingress_url: 'https://mosip.{{sandbox_domain_name}}/config'
   encrypt_key: '{{secrets.config_server.encrypt_key}}'
 
 activemq:
