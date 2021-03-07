@@ -262,6 +262,7 @@ webhook:
 
   image:
     repository: quay.io/jetstack/cert-manager-webhook
+    tag: v1.2.0
     # You can manage a registry with
     # registry: quay.io
     # repository: jetstack/cert-manager-webhook
@@ -351,6 +352,7 @@ cainjector:
 
   image:
     repository: quay.io/jetstack/cert-manager-cainjector
+    tag: v1.2.0
     # You can manage a registry with
     # registry: quay.io
     # repository: jetstack/cert-manager-cainjector

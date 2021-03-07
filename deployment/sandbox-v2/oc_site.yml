@@ -3,7 +3,7 @@
 # - Taints are applied only after monitoring tools have been installed on the pods.
 
 # Console
-- import_playbook: playbooks/console.yml  # Basic setup on console machine
+#- import_playbook: playbooks/console.yml  # Basic setup on console machine
 #- import_playbook: playbooks/nfs.yml 
 ### MZ cluster
 #- import_playbook: playbooks/mz-nfs-provisioner.yml
