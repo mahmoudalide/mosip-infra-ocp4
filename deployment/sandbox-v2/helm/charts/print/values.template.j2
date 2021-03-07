@@ -20,11 +20,12 @@ dockerHub:
 
 services:
   print:
-    serviceName: {{ versions.services.print.service.keys()[0] }}
-    dockerImage: {{ versions.services.print.service.values()[0] }}
+    serviceName: {{ versions.services.print.service.name }}
+    dockerImage: {{ versions.services.print.service.image }}
     containerPort: 8088
     servicePort: 80
     ingressPath: /v1/print
     healthUrl: /v1/print/actuator/health
     podconfig:
       {{ podconfig.print.service | to_nice_yaml(indent=6) | indent(6) }}
+domain: {{ sandbox_domain_name }}

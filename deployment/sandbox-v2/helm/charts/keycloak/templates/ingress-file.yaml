@@ -15,7 +15,7 @@ spec:
   rules:
   - host: "keycloak.{{ .Values.domain}}"
     http:
-      paths:
+      paths: /keycloak
       - path:
         backend:
           serviceName: {{ .Values.name }}
