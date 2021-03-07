@@ -1,20 +1,10 @@
 # Install cert-manager 
 - hosts: console
-  vars:
-    kube_config: '{{clusters.mz.kube_config}}'
-    install_name: 'cert-manager'
-    helm_chart: '{{charts_root}}/cert-manager'
-    is_template: false  
-    helm_namespace: 'default'
-    helm_values: '{{charts_root}}/cert-manager/values.template.j2'
-    helm_strings: ''
-  roles:
-    - {role:  helm}
-
   tasks:
     # TODO:  We are waiting here for postgres to settle down. This must be changed to 
     # a better check later
-    - name: Waiting for cert-manager to install completely.
-      pause:
-        seconds: 30 
+    - name: Create Namespace
+      command: 'oc create namespace cert-manager --kubeconfig {{clusters.mz.kube_config}}'
+    - name: Install cert-manager
+      command: 'oc apply -f https://github.com/jetstack/cert-manager/releases/download/v1.2.0/cert-manager.yaml --kubeconfig {{clusters.mz.kube_config}}'
 
