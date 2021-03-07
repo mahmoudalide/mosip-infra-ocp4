@@ -136,8 +136,8 @@ minio:
 keycloak:
   user: admin
   password: '{{secrets.keycloak.password}}'
-  url: 'http://keycloak.apps.ocp.rnpdev.shop' #'{{clusters.mz.ingress.base_url}}/keycloak'
-  external_url: 'http://keycloak.apps.ocp.rnpdev.shop' #'{{ site.sandbox_public_url }}/keycloak'
+  url: 'https://keycloak.apps.ocp.rnpdev.shop' #'{{clusters.mz.ingress.base_url}}/keycloak'
+  external_url: 'https://keycloak.apps.ocp.rnpdev.shop' #'{{ site.sandbox_public_url }}/keycloak'
   db:  # Assumed postgres 
     name: 'keycloak'  
     host: '{{postgres.host}}'  

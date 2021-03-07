@@ -5,7 +5,7 @@ keycloakUser: {{ keycloak.user }}
 keycloakPassword: '' # To be passed directly with helm command
 domain: {{ sandbox_domain_name }}
 internalDomain: {{ clusters.mz.nodeport_node }} 
-keycloakExternalUrl: "http://keycloak.{{ sandbox_domain_name }}/auth/"  
+keycloakExternalUrl: "https://keycloak.{{ sandbox_domain_name }}/auth/"  
 containerPort: 8080
 exportLogs: enabled  # Let filebeat export the logs
 servicePort: 80
