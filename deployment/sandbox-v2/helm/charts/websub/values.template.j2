@@ -1,7 +1,7 @@
 name: websub # Will be used as service name too
 services:
-  serviceName: {{ versions.services.websub.service.keys()[0] }}
-  dockerImage: {{ versions.services.websub.service.values()[0] }}
+  serviceName: {{ versions.services.websub.service.name }}
+  dockerImage: {{ versions.services.websub.service.image }}
   servicePort: 80
   podconfig:
     {{ podconfig.websub.service | to_nice_yaml(indent=4) | indent(4) }}
@@ -23,3 +23,4 @@ hub:
   retry_backofffactor: 2.0
   retry_maxwaitinterval: 65000
   port: 9191
+domain: {{ sandbox_domain_name }}
