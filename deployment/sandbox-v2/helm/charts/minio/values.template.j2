@@ -346,3 +346,6 @@ nodeAffinity:  # Added by mosip
     value: {{ minio.node_affinity.taint.value }}
 
 exportLogs: enabled  # Let filebeat export the logs
+sc:
+  name: "nfs-provisioner"
+domain: {{ sandbox_domain_name }}

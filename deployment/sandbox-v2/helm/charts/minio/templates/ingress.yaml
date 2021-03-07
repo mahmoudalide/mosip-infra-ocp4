@@ -12,9 +12,14 @@ metadata:
     ingress.kubernetes.io/class: nginx
 spec:
   rules:
-  - http:
+  - host: "mosip.{{ .Values.domain}}"
+    http:
       paths:
       - path: /minio  # To browser
         backend:
           serviceName: {{ template "minio.fullname" . }}
           servicePort: {{ .Values.service.port }} 
+  tls:
+  - hosts:
+    - "mosip.{{ .Values.domain}}"
+    secretName: mosip-certificate

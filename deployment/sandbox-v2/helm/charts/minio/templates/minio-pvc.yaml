@@ -4,7 +4,7 @@ apiVersion: v1
 metadata:
   name: {{ .Values.persistence.volumeName }} 
 spec:
-  storageClassName: ""
+  storageClassName: {{ .Values.sc.name }} 
   accessModes:
     - {{ .Values.persistence.accessMode }}
   resources:
