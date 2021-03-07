@@ -123,13 +123,13 @@ versions:
 
     dmzregproc:  
       receiver:
-        name: 'regproc-packet-receiver-stage'
+        name: 'regproc-dmz-packet-receiver-stage'
         image: 'mosipid/registration-processor-packet-receiver-stage:1.1.4'
       camel:
-        name: 'regproc-camel-stage'
+        name: 'regproc-dmz-camel-stage'
         image: 'mosipid/registration-processor-common-camel-bridge:1.1.4'
       status:
-        name: 'regproc-registration-status-service'
+        name: 'regproc-dmz-registration-status-service'
         image: 'mosipid/registration-processor-registration-status-service:1.1.4'
       pktserver:
         name: 'regproc-dmz-packet-server'

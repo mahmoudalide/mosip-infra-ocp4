@@ -27,8 +27,8 @@ dockerHub:
 
 services:
   camel:
-    serviceName: {{ versions.services.regproc.camel.keys()[0] }} 
-    dockerImage: {{ versions.services.regproc.camel.values()[0] }}
+    serviceName: {{ versions.services.regproc.camel.name }} 
+    dockerImage: {{ versions.services.regproc.camel.image }}
     ports:
       eventbusPort: 5723
       hazelcastPort: 5701
@@ -39,8 +39,8 @@ services:
       {{ podconfig.regproc.camel | to_nice_yaml(indent=6) | indent(6) }}
 
   notification:  # This is has a service front end for access (notification-svc.yaml)
-    serviceName: {{ versions.services.regproc.notification.keys()[0] }} 
-    dockerImage: {{ versions.services.regproc.notification.values()[0] }}
+    serviceName: {{ versions.services.regproc.notification.name }} 
+    dockerImage: {{ versions.services.regproc.notification.image }}
     ports:
       eventbusPort: 5712
       hazelcastPort: 5701
@@ -52,8 +52,8 @@ services:
       {{ podconfig.regproc.notification | to_nice_yaml(indent=6) | indent(6) }}
 
   reprocess:
-    serviceName: {{ versions.services.regproc.reprocess.keys()[0] }} 
-    dockerImage: {{ versions.services.regproc.reprocess.values()[0] }}
+    serviceName: {{ versions.services.regproc.reprocess.name }} 
+    dockerImage: {{ versions.services.regproc.reprocess.image }}
     ports:
       eventbusPort: 5750
       hazelcastPort: 5701
@@ -64,8 +64,8 @@ services:
       {{ podconfig.regproc.reprocess | to_nice_yaml(indent=6) | indent(6) }}
 
   uploader:
-    serviceName: {{ versions.services.regproc.uploader.keys()[0] }} 
-    dockerImage: {{ versions.services.regproc.uploader.values()[0] }}
+    serviceName: {{ versions.services.regproc.uploader.name }} 
+    dockerImage: {{ versions.services.regproc.uploader.image }}
     ports:
       eventbusPort: 5714
       hazelcastPort: 5701
@@ -76,8 +76,8 @@ services:
       {{ podconfig.regproc.uploader | to_nice_yaml(indent=6) | indent(6) }}
 
   quality:
-    serviceName: {{ versions.services.regproc.quality.keys()[0] }} 
-    dockerImage: {{ versions.services.regproc.quality.values()[0] }}
+    serviceName: {{ versions.services.regproc.quality.name }} 
+    dockerImage: {{ versions.services.regproc.quality.image }}
     ports:
       eventbusPort: 5727
       hazelcastPort: 5701
@@ -88,8 +88,8 @@ services:
       {{ podconfig.regproc.quality | to_nice_yaml(indent=6) | indent(6) }}
 
   validator:
-    serviceName: {{ versions.services.regproc.validator.keys()[0] }} 
-    dockerImage: {{ versions.services.regproc.validator.values()[0] }}
+    serviceName: {{ versions.services.regproc.validator.name }} 
+    dockerImage: {{ versions.services.regproc.validator.image }}
     ports:
       eventbusPort: 5715
       hazelcastPort: 5701
@@ -100,8 +100,8 @@ services:
       {{ podconfig.regproc.validator | to_nice_yaml(indent=6) | indent(6) }}
 
   osi:
-    serviceName: {{ versions.services.regproc.osi.keys()[0] }} 
-    dockerImage: {{ versions.services.regproc.osi.values()[0] }}
+    serviceName: {{ versions.services.regproc.osi.name }} 
+    dockerImage: {{ versions.services.regproc.osi.image }}
     ports:
       eventbusPort: 5716
       hazelcastPort: 5701
@@ -112,8 +112,8 @@ services:
       {{ podconfig.regproc.osi | to_nice_yaml(indent=6) | indent(6) }}
 
   demo:
-    serviceName: {{ versions.services.regproc.demo.keys()[0] }} 
-    dockerImage: {{ versions.services.regproc.demo.values()[0] }}
+    serviceName: {{ versions.services.regproc.demo.name }} 
+    dockerImage: {{ versions.services.regproc.demo.image }}
     ports:
       eventbusPort: 5717
       hazelcastPort: 5701
@@ -124,8 +124,8 @@ services:
       {{ podconfig.regproc.demo | to_nice_yaml(indent=6) | indent(6) }}
 
   bio:
-    serviceName: {{ versions.services.regproc.bio.keys()[0] }} 
-    dockerImage: {{ versions.services.regproc.bio.values()[0] }}
+    serviceName: {{ versions.services.regproc.bio.name }} 
+    dockerImage: {{ versions.services.regproc.bio.image }}
     ports:
       eventbusPort: 5718
       hazelcastPort: 5701
@@ -136,8 +136,8 @@ services:
       {{ podconfig.regproc.bio | to_nice_yaml(indent=6) | indent(6) }}
 
   bioauth:
-    serviceName: {{ versions.services.regproc.bioauth.keys()[0] }} 
-    dockerImage: {{ versions.services.regproc.bioauth.values()[0] }}
+    serviceName: {{ versions.services.regproc.bioauth.name }} 
+    dockerImage: {{ versions.services.regproc.bioauth.image }}
     ports:
       eventbusPort: 5777
       hazelcastPort: 5701
@@ -148,8 +148,8 @@ services:
       {{ podconfig.regproc.bioauth | to_nice_yaml(indent=6) | indent(6) }}
 
   abishandler:
-    serviceName: {{ versions.services.regproc.abishandler.keys()[0] }} 
-    dockerImage: {{ versions.services.regproc.abishandler.values()[0] }}
+    serviceName: {{ versions.services.regproc.abishandler.name }} 
+    dockerImage: {{ versions.services.regproc.abishandler.image }}
     ports:
       eventbusPort: 5726
       hazelcastPort: 5701
@@ -160,8 +160,8 @@ services:
       {{ podconfig.regproc.abishandler | to_nice_yaml(indent=6) | indent(6) }}
 
   abismid:
-    serviceName: {{ versions.services.regproc.abismid.keys()[0] }} 
-    dockerImage: {{ versions.services.regproc.abismid.values()[0] }}
+    serviceName: {{ versions.services.regproc.abismid.name }} 
+    dockerImage: {{ versions.services.regproc.abismid.image }}
     ports:
       eventbusPort: 5888
       hazelcastPort: 5701
@@ -172,8 +172,8 @@ services:
       {{ podconfig.regproc.abismid | to_nice_yaml(indent=6) | indent(6) }}
 
   manual:
-    serviceName: {{ versions.services.regproc.manual.keys()[0] }} 
-    dockerImage: {{ versions.services.regproc.manual.values()[0] }}
+    serviceName: {{ versions.services.regproc.manual.name }} 
+    dockerImage: {{ versions.services.regproc.manual.image }}
     ports:
       eventbusPort: 5720
       hazelcastPort: 5701
@@ -185,8 +185,8 @@ services:
       {{ podconfig.regproc.manual | to_nice_yaml(indent=6) | indent(6) }}
 
   external:
-    serviceName: {{ versions.services.regproc.external.keys()[0] }} 
-    dockerImage: {{ versions.services.regproc.external.values()[0] }}
+    serviceName: {{ versions.services.regproc.external.name }} 
+    dockerImage: {{ versions.services.regproc.external.image }}
     ports:
       eventbusPort: 5736
       hazelcastPort: 5701
@@ -197,8 +197,8 @@ services:
       {{ podconfig.regproc.external | to_nice_yaml(indent=6) | indent(6) }}
 
   eis: 
-    serviceName: {{ versions.services.regproc.eis.keys()[0] }} 
-    dockerImage: {{ versions.services.regproc.eis.values()[0] }}
+    serviceName: {{ versions.services.regproc.eis.name }} 
+    dockerImage: {{ versions.services.regproc.eis.image }}
     ports:
       containerPort: 8201
       servicePort: 80
@@ -208,8 +208,8 @@ services:
       {{ podconfig.regproc.eis | to_nice_yaml(indent=6) | indent(6) }}
 
   uin:
-    serviceName: {{ versions.services.regproc.uin.keys()[0] }} 
-    dockerImage: {{ versions.services.regproc.uin.values()[0] }}
+    serviceName: {{ versions.services.regproc.uin.name }} 
+    dockerImage: {{ versions.services.regproc.uin.image }}
     ports:
       eventbusPort: 5719
       hazelcastPort: 5701
@@ -220,8 +220,8 @@ services:
       {{ podconfig.regproc.uin | to_nice_yaml(indent=6) | indent(6) }}
 
   msg:
-    serviceName: {{ versions.services.regproc.msg.keys()[0] }} 
-    dockerImage: {{ versions.services.regproc.msg.values()[0] }}
+    serviceName: {{ versions.services.regproc.msg.name }} 
+    dockerImage: {{ versions.services.regproc.msg.image }}
     ports:
       eventbusPort: 5721
       hazelcastPort: 5701
@@ -232,8 +232,8 @@ services:
       {{ podconfig.regproc.msg | to_nice_yaml(indent=6) | indent(6) }}
 
   print:
-    serviceName: {{ versions.services.regproc.print.keys()[0] }} 
-    dockerImage: {{ versions.services.regproc.print.values()[0] }}
+    serviceName: {{ versions.services.regproc.print.name }} 
+    dockerImage: {{ versions.services.regproc.print.image }}
     ports:
       eventbusPort: 5722
       hazelcastPort: 5701
@@ -244,8 +244,8 @@ services:
       {{ podconfig.regproc.print | to_nice_yaml(indent=6) | indent(6) }}
 
   trans:
-    serviceName: {{ versions.services.regproc.trans.keys()[0] }} 
-    dockerImage: {{ versions.services.regproc.trans.values()[0] }}
+    serviceName: {{ versions.services.regproc.trans.name }} 
+    dockerImage: {{ versions.services.regproc.trans.image }}
     ports:
       containerPort: 8110
       servicePort: 80
@@ -253,3 +253,4 @@ services:
     healthUrl: /registrationprocessor/v1/registrationtransaction/actuator/health
     podconfig:
       {{ podconfig.regproc.trans | to_nice_yaml(indent=6) | indent(6) }}
+domain: {{ sandbox_domain_name }}
