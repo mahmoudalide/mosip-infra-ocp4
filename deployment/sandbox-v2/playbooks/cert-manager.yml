@@ -1,0 +1,20 @@
+# Install cert-manager 
+- hosts: console
+  vars:
+    kube_config: '{{clusters.mz.kube_config}}'
+    install_name: 'cert-manager'
+    helm_chart: '{{charts_root}}/cert-manager'
+    is_template: false  
+    helm_namespace: 'default'
+    helm_values: '{{charts_root}}/cert-manager/values.template.j2'
+    helm_strings: ''
+  roles:
+    - {role:  helm}
+
+  tasks:
+    # TODO:  We are waiting here for postgres to settle down. This must be changed to 
+    # a better check later
+    - name: Waiting for cert-manager to install completely.
+      pause:
+        seconds: 30 
+
