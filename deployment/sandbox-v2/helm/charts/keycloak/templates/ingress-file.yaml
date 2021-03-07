@@ -10,6 +10,7 @@ metadata:
   namespace: {{ .Values.ingress.namespace }} 
   annotations:
     ingress.kubernetes.io/class: nginx
+    cert-manager.io/cluster-issuer: "letsencrypt-issuer"
 spec:
   rules:
   - host: "keycloak.{{ .Values.domain}}"
@@ -19,3 +20,7 @@ spec:
         backend:
           serviceName: {{ .Values.name }}
           servicePort: {{ .Values.servicePort }} 
+  tls:
+  - hosts:
+    - "keycloak.{{ .Values.domain}}"
+    secretName: keycloak-certificate
