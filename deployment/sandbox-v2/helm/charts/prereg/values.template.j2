@@ -62,7 +62,7 @@ services:
     containerPort: 80
     servicePort: 80
     configName: prereg-ui-config # ConfigMap name
-    apiHost: https://mosip.{{ sandbox_domain_name }}
+    apiHost: https://mosip.{{ sandbox_domain_name }}/
     ingressPath: /pre-registration-ui
     podconfig:
       {{ podconfig.prereg.ui | to_nice_yaml(indent=6) | indent(6) }}
