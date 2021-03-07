@@ -25,7 +25,7 @@
 #- import_playbook: playbooks/kernel.yml
 #- import_playbook: playbooks/packetmanager.yml
 #- import_playbook: playbooks/datashare.yml
-#- import_playbook: playbooks/prereg.yml
+- import_playbook: playbooks/prereg.yml
 #- import_playbook: playbooks/websub.yml
 #- import_playbook: playbooks/regproc.yml
 #- import_playbook: playbooks/ida.yml ##errors during installation
@@ -33,7 +33,7 @@
 #- import_playbook: playbooks/pms.yml
 #- import_playbook: playbooks/resident.yml
 #- import_playbook: playbooks/admin.yml
-- import_playbook: playbooks/print.yml
-- import_playbook: playbooks/mock-abis.yml
+#- import_playbook: playbooks/print.yml
+#- import_playbook: playbooks/mock-abis.yml
 ### Regclient downloader
-- import_playbook: playbooks/reg-client-downloader.yml
+#- import_playbook: playbooks/reg-client-downloader.yml
