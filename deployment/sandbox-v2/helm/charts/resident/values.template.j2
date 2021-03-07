@@ -25,8 +25,8 @@ dockerHub:
 
 services:
   resident: 
-    serviceName: {{ versions.services.resident.resident.keys()[0] }} 
-    dockerImage: {{ versions.services.resident.resident.values()[0] }}
+    serviceName: {{ versions.services.resident.resident.name }} 
+    dockerImage: {{ versions.services.resident.resident.image }}
     dockerTag: 1.0.10
     containerPort: 8099
     servicePort: 80
@@ -34,3 +34,4 @@ services:
     healthUrl: /resident/v1/actuator/health
     podconfig: 
       {{ podconfig.resident.service | to_nice_yaml(indent=6) | indent(6) }}
+domain: {{ sandbox_domain_name }}
