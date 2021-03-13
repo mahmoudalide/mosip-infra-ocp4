@@ -6,7 +6,7 @@ configServerUrl: {{ config_server.internal_url }}
 artifactoryUrl: {{ artifactory_url }} 
 imagePullPolicy: Always
 docker:
-  image: {{ versions.services.registration_client.downloader.values()[0] }}
+  image: {{ versions.services.registration_client.downloader.image }}
   ports:
     containerPort: 80
     servicePort: 80
