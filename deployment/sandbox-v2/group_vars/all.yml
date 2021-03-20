@@ -13,7 +13,7 @@ artifactory_url: http://artifactory-service/
 versions_file: '{{install_root}}/versions.yml' 
 podconfig_file: '{{install_root}}/podconfig.yml'
 
-sandbox_domain_name: apps.ocp.rnpdev.shop
+sandbox_domain_name: apps.mz.mosip.dev
 internal_domain_name: '{{ansible_host}}'  # IP address of console
 site:
   sandbox_public_url: 'https://mosip.{{sandbox_domain_name}}'  # The public url needs to point to nginx on console
@@ -62,7 +62,7 @@ docker:
 clusters:
   mz:
     kube_config:  "{{lookup('env', 'HOME') }}/.kube/mzcluster.config" 
-    nodeport_node: '192.168.50.13'  # Any node on cluster for nodeport access
+    nodeport_node: '192.168.22.211'  # Any node on cluster for nodeport access
     kafka:
       nfs_path: '{{nfs.folder}}/mz/kafka'  
       size: 8Gi 

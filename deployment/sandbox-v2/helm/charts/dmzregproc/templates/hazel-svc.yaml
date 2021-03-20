@@ -4,7 +4,7 @@ apiVersion: v1
 kind: Service
 metadata:
   namespace: default
-  name: service-dmz-hazelcast-server
+  name: service-hazelcast-server
 spec:
   selector:
     component: service-hazelcast-server
