@@ -3,6 +3,12 @@
   pip:
     name: pexpect
     state: present
+    executable: /bin/pip3
   become: yes
-
+- name: Install pexpect
+  pip:
+    name: pexpect
+    state: present
+    executable: /bin/pip
+  become: yes
 

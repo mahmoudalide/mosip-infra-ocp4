@@ -14,5 +14,5 @@
       Password: '{{githubpassword}}'
     timeout: 600
   ignore_errors: yes
-  no_log: true
+  no_log: false
 

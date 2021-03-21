@@ -2,4 +2,5 @@
   pip:
     name: netaddr
     state: present
+    executable: /bin/pip3
   become: yes
