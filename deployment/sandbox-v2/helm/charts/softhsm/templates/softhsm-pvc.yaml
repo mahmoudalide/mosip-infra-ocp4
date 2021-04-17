@@ -4,7 +4,7 @@ apiVersion: v1
 metadata:
   name: {{ .Values.pvc.name }} 
 spec:
-  storageClassName: {{ .Values.sc.name }} 
+  storageClassName: ""
   accessModes:
     - ReadWriteOnce
   resources:

@@ -22,43 +22,30 @@ dockerHub:
   keyname: {{ docker.hub.keyname }}
 
 services:
-  misp: 
-    serviceName: {{ versions.services.pms.misp.name }} 
-    dockerImage: {{ versions.services.pms.misp.image }}
-    containerPort: 9100
-    servicePort: 80
-    ingressPath: /partnermanagement/v1/misps
-    healthUrl: /partnermanagement/v1/misps/actuator/health
-    podconfig:
-      {{ podconfig.pms.misp | to_nice_yaml(indent=6) | indent(6) }}
-
-  pm:
-    serviceName: {{ versions.services.pms.pm.name }} 
-    dockerImage: {{ versions.services.pms.pm.image }}
-    containerPort: 9102
-    servicePort: 80
-    ingressPath: /partnermanagement/v1/pmpartners
-    healthUrl: /partnermanagement/v1/pmpartners/actuator/health
-    podconfig:
-      {{ podconfig.pms.pm | to_nice_yaml(indent=6) | indent(6) }}
-
   partner:
-    serviceName: {{ versions.services.pms.partner.name }} 
-    dockerImage: {{ versions.services.pms.partner.image }}
-    containerPort: 9103
+    serviceName: {{ versions.services.pms.partner.keys()[0] }}
+    dockerImage: {{ versions.services.pms.partner.values()[0] }}
+    containerPort: 9109
     servicePort: 80
-    ingressPath: /partnermanagement/v1/partners
-    healthUrl: /partnermanagement/v1/partners/actuator/health
+    ingressPath: /v1/partnermanager
+    healthUrl: /v1/partnermanager/actuator/health
     podconfig:
       {{ podconfig.pms.partner | to_nice_yaml(indent=6) | indent(6) }}
 
   policy:
-    serviceName: {{ versions.services.pms.policy.name }} 
-    dockerImage: {{ versions.services.pms.policy.image }}
-    containerPort: 9101
+    serviceName: {{ versions.services.pms.policy.keys()[0] }}
+    dockerImage: {{ versions.services.pms.policy.values()[0] }}
+    containerPort: 9107
     servicePort: 80
-    ingressPath: /partnermanagement/v1/policies
-    healthUrl: /partnermanagement/v1/policies/actuator/health
+    ingressPath: /v1/policymanager
+    healthUrl: /v1/policymanager/actuator/health
     podconfig:
-      {{ podconfig.pms.policy | to_nice_yaml(indent=6) | indent(6) }}
-domain: {{ sandbox_domain_name }}
+      {{ podconfig.pms.partner | to_nice_yaml(indent=6) | indent(6) }}
+
+  ui:
+    serviceName: {{ versions.services.pms.ui.keys()[0] }}
+    dockerImage: {{ versions.services.pms.ui.values()[0] }}
+    containerPort: 80
+    servicePort: 80
+    apiHost: {{ site.sandbox_public_url }}/v1/
+    ingressPath: /pmp-ui

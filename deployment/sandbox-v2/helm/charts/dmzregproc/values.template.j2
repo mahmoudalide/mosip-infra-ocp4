@@ -40,8 +40,8 @@ imagePullPolicy: Always
 services:
 
   receiver:
-    serviceName: {{ versions.services.dmzregproc.receiver.name }} 
-    dockerImage: {{ versions.services.dmzregproc.receiver.image }}
+    serviceName: {{ versions.services.dmzregproc.receiver.keys()[0] }} 
+    dockerImage: {{ versions.services.dmzregproc.receiver.values()[0] }}
     ports:
       eventbusPort: 5711
       hazelcastPort: 5701
@@ -53,8 +53,8 @@ services:
       {{ podconfig.dmzregproc.receiver | to_nice_yaml(indent=6) | indent(6) }}
 
   camel:
-    serviceName: {{ versions.services.dmzregproc.camel.name }} 
-    dockerImage: {{ versions.services.dmzregproc.camel.image }}
+    serviceName: {{ versions.services.dmzregproc.camel.keys()[0] }} 
+    dockerImage: {{ versions.services.dmzregproc.camel.values()[0] }}
     ports:
       eventbusPort: 5723
       hazelcastPort: 5701
@@ -66,8 +66,8 @@ services:
       {{ podconfig.dmzregproc.camel | to_nice_yaml(indent=6) | indent(6) }}
 
   status:
-    serviceName: {{ versions.services.dmzregproc.status.name }} 
-    dockerImage: {{ versions.services.dmzregproc.status.image }}
+    serviceName: {{ versions.services.dmzregproc.status.keys()[0] }} 
+    dockerImage: {{ versions.services.dmzregproc.status.values()[0] }}
     ports:
       containerPort: 8083
       servicePort: 80
@@ -77,8 +77,8 @@ services:
       {{ podconfig.dmzregproc.status | to_nice_yaml(indent=6) | indent(6) }}
 
   pktserver:
-    serviceName: {{ versions.services.dmzregproc.pktserver.name }} 
-    dockerImage: {{ versions.services.dmzregproc.pktserver.image }}
+    serviceName: {{ versions.services.dmzregproc.pktserver.keys()[0] }} 
+    dockerImage: {{ versions.services.dmzregproc.pktserver.values()[0] }}
     pv:
       name: pktserver-pv
       size: 5Gi  # Same as landing above
@@ -97,4 +97,3 @@ services:
     podconfig:
       {{ podconfig.dmzregproc.pktserver | to_nice_yaml(indent=6) | indent(6) }}
       
-domain: {{ sandbox_domain_name }}

@@ -21,8 +21,8 @@ dockerHub:
 
 services:
   application:
-    serviceName: {{ versions.services.prereg.application.name }} 
-    dockerImage: {{ versions.services.prereg.application.image }}
+    serviceName: {{ versions.services.prereg.application.keys()[0] }} 
+    dockerImage: {{ versions.services.prereg.application.values()[0] }}
     containerPort: 9090
     servicePort: 80
     ingressPath: /preregistration/v1
@@ -30,8 +30,8 @@ services:
     podconfig:
       {{ podconfig.prereg.application | to_nice_yaml(indent=6) | indent(6) }}
   batch:
-    serviceName: {{ versions.services.prereg.batch.name }} 
-    dockerImage: {{ versions.services.prereg.batch.image }}
+    serviceName: {{ versions.services.prereg.batch.keys()[0] }} 
+    dockerImage: {{ versions.services.prereg.batch.values()[0] }}
     containerPort: 9097
     servicePort: 80
     ingressPath: ""
@@ -39,8 +39,8 @@ services:
     podconfig:
       {{ podconfig.prereg.batch | to_nice_yaml(indent=6) | indent(6) }}
   booking:
-    serviceName: {{ versions.services.prereg.booking.name }} 
-    dockerImage: {{ versions.services.prereg.booking.image }}
+    serviceName: {{ versions.services.prereg.booking.keys()[0] }} 
+    dockerImage: {{ versions.services.prereg.booking.values()[0] }}
     containerPort: 9095
     servicePort: 80
     ingressPath: /preregistration/v1/appointment
@@ -48,8 +48,8 @@ services:
     podconfig:
       {{ podconfig.prereg.booking | to_nice_yaml(indent=6) | indent(6) }}
   datasync:
-    serviceName: {{ versions.services.prereg.datasync.name }} 
-    dockerImage: {{ versions.services.prereg.datasync.image }}
+    serviceName: {{ versions.services.prereg.datasync.keys()[0] }} 
+    dockerImage: {{ versions.services.prereg.datasync.values()[0] }}
     containerPort: 9094
     servicePort: 80
     ingressPath: /preregistration/v1/sync
@@ -57,13 +57,13 @@ services:
     podconfig:
       {{ podconfig.prereg.datasync | to_nice_yaml(indent=6) | indent(6) }}
   ui:
-    serviceName: {{ versions.services.prereg.ui.name }} 
-    dockerImage: {{ versions.services.prereg.ui.image }}
+    serviceName: {{ versions.services.prereg.ui.keys()[0] }} 
+    dockerImage: {{ versions.services.prereg.ui.values()[0] }}
     containerPort: 80
     servicePort: 80
     configName: prereg-ui-config # ConfigMap name
-    apiHost: https://mosip.{{ sandbox_domain_name }}
+    apiHost: https://{{ sandbox_domain_name }}/
     ingressPath: /pre-registration-ui
     podconfig:
       {{ podconfig.prereg.ui | to_nice_yaml(indent=6) | indent(6) }}
-domain: {{ sandbox_domain_name }}    
+    

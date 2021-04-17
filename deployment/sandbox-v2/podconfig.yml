@@ -313,13 +313,6 @@ podconfig:
       maxSurge: 1 
       java_opts: "-Xms500M -Xmx500M"
 
-    bioextractor:
-      replicas: 1
-      minReadySeconds: 10
-      maxUnavailable: 0
-      maxSurge: 1 
-      java_opts: "-Xms500M -Xmx500M"
-
     credentialreq:
       replicas: 1
       minReadySeconds: 10
@@ -450,6 +443,20 @@ podconfig:
         limits:
           cpu: 400m
           memory: 700Mi 
+
+  mockmv:
+    service:
+      replicas: 1
+      maxSurge: 1
+      maxUnavailable: 0
+      minReadySeconds: 10
+      resources:
+        requests:
+          cpu: 200m
+          memory: 500Mi
+        limits:
+          cpu: 400m
+          memory: 700Mi
 
   postgres:
     service:

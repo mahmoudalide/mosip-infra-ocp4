@@ -20,12 +20,11 @@ dockerHub:
 
 services:
   datashare:
-    serviceName: {{ versions.services.datashare.service.name }}
-    dockerImage: {{ versions.services.datashare.service.image }}
+    serviceName: {{ versions.services.datashare.service.keys()[0] }}
+    dockerImage: {{ versions.services.datashare.service.values()[0] }}
     containerPort: 8097
     servicePort: 80
     ingressPath: /v1/datashare
     healthUrl: /v1/datashare/actuator/health
     podconfig:
       {{ podconfig.datashare.service | to_nice_yaml(indent=6) | indent(6) }}
-domain: {{ sandbox_domain_name }}

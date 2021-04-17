@@ -7,7 +7,7 @@ The Ansible scripts here run MOSIP on a multi Virtual Machine (VM) setup.  The s
 _**WARNING**: The sandbox is not intented to be used for serious pilots or production.  Further, do not run the sandbox with any confidential data._
 
 ## Sandbox architecture
-![](https://github.com/mosip/mosip-infra-ocp4/blob/master/deployment/sandbox-v2/docs/sandbox_architecture.png)
+![](https://github.com/mosip/mosip-infra/blob/master/deployment/sandbox-v2/docs/sandbox_architecture.png)
 
 ## OS
 **CentOS 7.8** on all machines.
@@ -72,10 +72,10 @@ $ sudo yum install -y git
 * Git clone this repo in user home directory. Switch to the appropriate branch.  
 ```
 $ cd ~/
-$ git clone https://github.com/mosip/mosip-infra-ocp4
-$ cd mosip-infra-ocp4
-$ git checkout 1.1.2
-$ cd mosip-infra-ocp4/deployment/sandbox-v2
+$ git clone https://github.com/mosip/mosip-infra
+$ cd mosip-infra
+$ git checkout 1.1.5
+$ cd mosip-infra/deployment/sandbox-v2
 ```
 * Install Ansible and create shortcuts:
 ```
@@ -121,6 +121,9 @@ $ an site.yml
 ```
 Provide the vault password.  Default is 'foo'.
 
+### Certificate Exchange
+* The steps for the abis certificate exchange is mentoned in the [abiscert.md](docs/abiscert.md)
+
 ## Dashboards
 The links to various dashboards are available at 
 
@@ -139,6 +142,8 @@ To install fresh, you may want to reset the clusters and persistence data.  Run 
 ```
 $ an reset.yml
 ```
+## Migration
+In case of Migration follow the steps mentioned in the [MIGRATION DOCS](docs/migration.md).
 
 ## Persistence
 All persistent data is available over Network File System (NFS) hosted on the console at location `/srv/nfs/mosip`.  All pods write into this location for any persistent data.  You may backup this folder if needed.
@@ -158,7 +163,7 @@ alias an='ansible-playbook -i hosts.ini --ask-vault-pass -e @secrets.yml'
 alias av='ansible-vault'
 alias kc1='kubectl --kubeconfig $HOME/.kube/mzcluster.config'
 alias kc2='kubectl --kubeconfig $HOME/.kube/dmzcluster.config'
-alias sb='cd $HOME/mosip-infra-ocp4/deployment/sandbox-v2/'
+alias sb='cd $HOME/mosip-infra/deployment/sandbox-v2/'
 alias helm1='helm --kubeconfig $HOME/.kube/mzcluster.config'
 alias helm2='helm --kubeconfig $HOME/.kube/dmzcluster.config'
 alias helmm='helm --kubeconfig $HOME/.kube/mzcluster.config -n monitoring'

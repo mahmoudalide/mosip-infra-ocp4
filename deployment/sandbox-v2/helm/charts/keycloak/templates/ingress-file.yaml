@@ -10,17 +10,12 @@ metadata:
   namespace: {{ .Values.ingress.namespace }} 
   annotations:
     ingress.kubernetes.io/class: nginx
-    cert-manager.io/cluster-issuer: "letsencrypt-issuer"
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
 spec:
   rules:
-  - host: "keycloak.{{ .Values.domain}}"
-    http:
+  - http:
       paths:
-      - path:
+      - path: /keycloak(/|$)(.*)
         backend:
           serviceName: {{ .Values.name }}
           servicePort: {{ .Values.servicePort }} 
-  tls:
-  - hosts:
-    - "keycloak.{{ .Values.domain}}"
-    secretName: keycloak-certificate

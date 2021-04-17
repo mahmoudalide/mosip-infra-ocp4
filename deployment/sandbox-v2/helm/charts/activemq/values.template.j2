@@ -21,7 +21,7 @@ imagePullPolicy: Always
 exportLogs: enabled  # Let filebeat export the logs
 
 sc:
-  name: "nfs-provisioner"
+  name: ""
 pv:
   name: activemq
   size: 500Mi  
@@ -34,4 +34,3 @@ mountPath: /data/activemq  # path inside docker
 nfs:
   server: {{ nfs.server }} 
   path: {{ activemq.nfs_path }}
-domain: {{ sandbox_domain_name }}

@@ -128,7 +128,7 @@ persistence:
 ##
 
 service:
-  type: ClusterIP
+  type: NodePort
   clusterIP: ~
   port: 9000
   nodePort: 32000
@@ -346,6 +346,3 @@ nodeAffinity:  # Added by mosip
     value: {{ minio.node_affinity.taint.value }}
 
 exportLogs: enabled  # Let filebeat export the logs
-sc:
-  name: "nfs-provisioner"
-domain: {{ sandbox_domain_name }}

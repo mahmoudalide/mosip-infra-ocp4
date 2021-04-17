@@ -21,7 +21,7 @@ $ ./preinstall.sh
 ```
 $ ./convert.py <secrets_file_path>
 ```
-In this sandbox `secrets_file_path` is `/home/mosipuser/mosip-infra-ocp4/deployment/sandbox-v2/secrets.yml`
+In this sandbox `secrets_file_path` is `/home/mosipuser/mosip-infra/deployment/sandbox-v2/secrets.yml`
 
 Output is saved in `out.yaml`
 

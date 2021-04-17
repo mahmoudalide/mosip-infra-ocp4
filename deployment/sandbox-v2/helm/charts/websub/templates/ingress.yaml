@@ -6,18 +6,12 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: "nginx"
     nginx.com/health-checks: "true"
-    cert-manager.io/cluster-issuer: "letsencrypt-issuer"
 spec:
   rules:
-  - host: "mosip.{{ .Values.domain}}"
-    http:
+  - http:
       paths:
       - path: /websub
         backend:
           serviceName: {{ .Values.services.serviceName }}
           servicePort: 80 
 
-  tls:
-  - hosts:
-    - "mosip.{{ .Values.domain}}"
-    secretName: mosip-certificate

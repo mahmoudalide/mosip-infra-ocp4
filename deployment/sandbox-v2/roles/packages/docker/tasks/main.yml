@@ -33,7 +33,7 @@
     dest: /etc/docker/daemon.json
   become: yes
 
-- name: Restart docker for daemon.json changes
+- name: Run docker for daemon.json
   shell: 'systemctl restart docker'
   become: yes
 

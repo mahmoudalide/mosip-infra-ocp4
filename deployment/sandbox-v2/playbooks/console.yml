@@ -3,6 +3,14 @@
 # play as tasks only run after roles if they are in the same play (for some reason)
 # and for us sequencing is important.
 
+- hosts: all
+  tags: wait
+  gather_facts: no
+  tasks:
+    - name: Attempt to reach all configured hosts, failures means the host is not reachable
+      wait_for_connection: 
+        timeout: 30
+
 - hosts: console
   gather_facts: true 
   tasks:
@@ -16,12 +24,12 @@
      - {role: packages/vim, tags: [vim]}
      - {role: packages/pip, tags: [pip]}
      - {role: packages/python3, tags: [python3]} # Needed for letsencrypt and test scripts
-     #- {role: packages/docker, tags: [docker]}
+     - {role: packages/docker, tags: [docker]}
      - {role: packages/kubectl, tags: [kubectl]}
      - {role: packages/psql, tags: [psql]}
      - {role: packages/openshift, tags: [openshift]}
      - {role: packages/helm-cli, tags: [helm-cli]}
-     #- {role: packages/policycoreutils-python, tags: [policy]}
+     - {role: packages/policycoreutils-python, tags: [policy]}
      - {role: packages/requests3, tags: [requests3]}
      - {role: packages/tmux, tags: [tmux]}
      - {role: packages/bind-utils, tags: [bind-utils]}

@@ -8,8 +8,7 @@ metadata:
      nginx.com/health-checks: "true"
 spec:
   rules:
-  - host: "mosip.{{ .Values.domain}}"
-    http:
+  - http:
       paths:
       {{- range $index, $service := .Values.services }}
         {{ if $service.ingressPath }}
@@ -19,7 +18,4 @@ spec:
           servicePort: {{ $service.servicePort }} 
         {{ end }}
       {{- end }}
-  tls:
-  - hosts:
-    - "mosip.{{ .Values.domain}}"
-    secretName: mosip-certificate
+

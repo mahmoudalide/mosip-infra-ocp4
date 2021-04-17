@@ -18,12 +18,11 @@ dockerHub:
 
 services:
   mockabis:
-    serviceName: {{ versions.services.mock.abis.name }}
-    dockerImage: {{ versions.services.mock.abis.image }}
+    serviceName: {{ versions.services.mock.abis.keys()[0] }}
+    dockerImage: {{ versions.services.mock.abis.values()[0] }}
     containerPort: 8081
     servicePort: 80
     ingressPath: /v1/mock-abis
     healthUrl: /v1/mock-abis-service/actuator/health
     podconfig:
       {{ podconfig.mockabis.service | to_nice_yaml(indent=6) | indent(6) }}
-domain: {{ sandbox_domain_name }}

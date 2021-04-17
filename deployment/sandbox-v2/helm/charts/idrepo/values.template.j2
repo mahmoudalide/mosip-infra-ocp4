@@ -27,8 +27,8 @@ extraction_format: mock
 
 services:
   identity:
-    serviceName: {{ versions.services.idrepo.identity.name }} 
-    dockerImage: {{ versions.services.idrepo.identity.image }}
+    serviceName: {{ versions.services.idrepo.identity.keys()[0] }} 
+    dockerImage: {{ versions.services.idrepo.identity.values()[0] }}
     serviceName: idrepo-identity-service
     containerPort: 8090
     servicePort: 80
@@ -38,8 +38,8 @@ services:
       {{ podconfig.idrepo.identity| to_nice_yaml(indent=6) | indent(6) }}
 
   vid: 
-    serviceName: {{ versions.services.idrepo.vid.name }} 
-    dockerImage: {{ versions.services.idrepo.vid.image }}
+    serviceName: {{ versions.services.idrepo.vid.keys()[0] }} 
+    dockerImage: {{ versions.services.idrepo.vid.values()[0] }}
     containerPort: 8091
     servicePort: 80
     ingressPath: /idrepository/v1/vid
@@ -47,19 +47,9 @@ services:
     podconfig:
       {{ podconfig.idrepo.vid | to_nice_yaml(indent=6) | indent(6) }}
 
-  bioextractor:
-    serviceName: {{ versions.services.idrepo.bioextractor.name }}
-    dockerImage: {{ versions.services.idrepo.bioextractor.image }}
-    containerPort: 8100
-    servicePort: 80
-    ingressPath: /v1/bioextractor/mock
-    healthUrl: /v1/bioextractor/mock/actuator/health
-    podconfig:
-      {{ podconfig.idrepo.bioextractor | to_nice_yaml(indent=6) | indent(6) }}
-
   credentialrequest:
-    serviceName: {{ versions.services.idrepo.credentialreq.name }}
-    dockerImage: {{ versions.services.idrepo.credentialreq.image }}
+    serviceName: {{ versions.services.idrepo.credentialreq.keys()[0] }}
+    dockerImage: {{ versions.services.idrepo.credentialreq.values()[0] }}
     containerPort: 8094
     servicePort: 80
     ingressPath: /v1/credentialrequest
@@ -68,8 +58,8 @@ services:
       {{ podconfig.idrepo.credentialreq | to_nice_yaml(indent=6) | indent(6) }}
 
   credentialservice:
-    serviceName: {{ versions.services.idrepo.credentialservice.name }}
-    dockerImage: {{ versions.services.idrepo.credentialservice.image }}
+    serviceName: {{ versions.services.idrepo.credentialservice.keys()[0] }}
+    dockerImage: {{ versions.services.idrepo.credentialservice.values()[0] }}
     containerPort: 8095
     servicePort: 80
     ingressPath: /v1/credentialservice
@@ -79,6 +69,5 @@ services:
 
 generators:
   salt:  
-    name: {{ versions.services.idrepo.salt.name }} 
-    dockerImage: {{ versions.services.idrepo.salt.image }}
-domain: {{ sandbox_domain_name }}
+    name: {{ versions.services.idrepo.salt.keys()[0] }} 
+    dockerImage: {{ versions.services.idrepo.salt.values()[0] }}
