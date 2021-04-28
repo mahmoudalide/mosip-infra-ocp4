@@ -9,14 +9,14 @@ logs_dir: '{{tmp_dir}}/logs'
 tmp_yamls: '{{tmp_dir}}/yaml'
 charts_root: '{{install_root}}/helm/charts'  # Helm charts root
 helm_cli_path: '{{user_home}}/bin'  # This path chosen as it is included in default $PATH in Centos 7.7
-artifactory_url: http://artifactory-service/
+artifactory_url: http://artifactory-service.default:80/
 versions_file: '{{install_root}}/versions.yml' 
 podconfig_file: '{{install_root}}/podconfig.yml'
 
-sandbox_domain_name: apps.mz.mosip.dev
+sandbox_domain_name: minibox.mosip.net
 internal_domain_name: '{{ansible_host}}'  # IP address of console
 site:
-  sandbox_public_url: 'https://mosip.{{sandbox_domain_name}}'  # The public url needs to point to nginx on console
+  sandbox_public_url: 'https://{{sandbox_domain_name}}'  # The public url needs to point to nginx on console
   sandbox_internal_url: 'https://{{internal_domain_name}}'  # Pointing to nginx which runs on console
   sandbox_internal_tld: 'sb'  # Top-level domain name.  This much match tld of all hosts in hosts.ini
   ingress_tld: 'ingress'  # Fixed. Don't change this!
@@ -63,6 +63,40 @@ clusters:
   mz:
     kube_config:  "{{lookup('env', 'HOME') }}/.kube/mzcluster.config" 
     nodeport_node: '{{groups.mzworkers[0]}}'  # Any node on cluster for nodeport access
+    ingress:
+      namespace: ingress-nginx
+      nodeports:
+        http: 30080 
+        https: 30443
+      node_alias: "{{'mz.' + site.ingress_tld}}" # Hardcoded, mapped to one of the nodes below in coredns config
+      base_url: 'http://{{groups.mzworkers[0]}}:30080' # Any node since ingress runs on nodeport
+    dashboard:
+      url: /mz-dashboard
+      token_expiry: 86400 # Seconds
+      nodeport: 30081  # Dashboard runs on nodeport 
+    monitoring:
+      enabled: true
+      namespace: monitoring
+      nfs:
+        server: '{{nfs.server}}'
+        prometheus:
+          alert_path: '{{nfs.folder}}/monitoring/mz/prometheus/alertmanager'
+          push_path: '{{nfs.folder}}/monitoring/mz/prometheus/pushgateway'
+          server_path: '{{nfs.folder}}/monitoring/mz/prometheus/server'
+        grafana:
+          path: '{{nfs.folder}}/monitoring/mz/grafana'
+      grafana_ingress_path: 'mz-grafana'
+      grafana_token_file: '{{tmp_dir}}/grafana_mz.token'
+      grafana:
+        alerts:
+          # channel name of slack for sending alerts, example:
+          channel: prometheus_alerts
+          #webhook url of the same slack channel, example:
+          url: https://hooks.slack.com/services/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
+      elasticsearch:
+        host: 'elasticsearch-master:9200'
+      kibana: 
+        url: http://kibana-kibana:5601 
     kafka:
       nfs_path: '{{nfs.folder}}/mz/kafka'  
       size: 8Gi 
@@ -77,6 +111,34 @@ clusters:
   dmz:
     kube_config:  "{{lookup('env', 'HOME') }}/.kube/dmzcluster.config" 
     nodeport_node: '{{groups.dmzworkers[0]}}'  # Any node on cluster for nodeport access
+    ingress:
+      namespace: ingress-nginx
+      nodeports:
+        http: 30080 
+        https: 30443
+      node_alias: "{{'dmz.' + site.ingress_tld}}" # Hardcoded, mapped to one of the nodes below in coredns config
+      base_url: 'http://{{groups["dmzworkers"][0]}}:30080' # Any node since ingress runs on nodeport
+    dashboard: 
+      url: /dmz-dashboard
+      token_expiry: 86400 # Seconds 
+      nodeport: 30081  # Dashboard runs on nodeport 
+    monitoring:
+      enabled: true
+      namespace: monitoring
+      nfs:
+        server: '{{nfs.server}}'
+        prometheus:
+          alert_path: '{{nfs.folder}}/monitoring/dmz/prometheus/alertmanager'
+          push_path: '{{nfs.folder}}/monitoring/dmz/prometheus/pushgateway'
+          server_path: '{{nfs.folder}}/monitoring/dmz/prometheus/server'
+        grafana:
+          path: '{{nfs.folder}}/monitoring/dmz/grafana'
+      grafana_ingress_path: 'dmz-grafana'
+      grafana_token_file: '{{tmp_dir}}/grafana_dmz.token'
+      elasticsearch:
+        host: '{{groups.mzworkers[0]}}:30080/elasticsearch' # Connect to elasticsearch on MZ
+      kibana: 
+        url: 'http://{{groups.mzworkers[0]}}:30601'  # Kibana runs on this nodeport on MZ.
     kafka:
       nfs_path: '{{nfs.folder}}/dmz/kafka'  
       size: 8Gi 
@@ -109,7 +171,8 @@ postgres:
   upgrade:
     set: false  # accepts true or false value as per need.
     version: 1.1.5 # version gto which upgrade is needed.
-    type: release
+    type: release #should have two values release or revoke as per need.
+    info_file: '{{tmp_dir}}/upgrade.db'
 
   # All below configs applicable only when external: false 
   internal_host: postgres # Service name of postgres k8s service. Not applicable if external=true
@@ -141,8 +204,8 @@ minio:
 keycloak:
   user: admin
   password: '{{secrets.keycloak.password}}'
-  url: 'https://keycloak.{{sandbox_domain_name}}'
-  external_url: 'https://keycloak.{{sandbox_domain_name}}'
+  url: '{{clusters.mz.ingress.base_url}}/keycloak'
+  external_url: '{{ site.sandbox_public_url }}/keycloak'
   db:  # Assumed postgres 
     name: 'keycloak'  
     host: '{{postgres.host}}'  
@@ -242,7 +305,7 @@ databases:
   mosip_audit:
     user: audituser
     sql_path: '{{repos.commons.dest}}/db_scripts'
-    release_path: '{{repos.commons.dest}}/db_release_scripts'
+#    release_path: '{{repos.commons.dest}}/db_release_scripts'
   mosip_authdevice:
     user: authdeviceuser
     sql_path: '{{repos.commons.dest}}/db_scripts'
@@ -274,7 +337,7 @@ databases:
     user: prereguser
     sql_path: '{{repos.prereg.dest}}/db_scripts'
     dml_path: '{{repos.ref_impl.dest}}/data-dml'
-    release_path: '{{repos.prereg.dest}}/db_release_scripts'
+#    release_path: '{{repos.prereg.dest}}/db_release_scripts'
   mosip_regprc:
     user: regprcuser
     sql_path: '{{repos.regproc.dest}}/db_scripts'
@@ -289,7 +352,7 @@ databases:
     user: pmpuser
     sql_path: '{{repos.pms.dest}}/db_scripts'
     dml_path: '{{repos.ref_impl.dest}}/data-dml'
-    release_path: '{{repos.pms.dest}}/db_release_scripts'
+#    release_path: '{{repos.pms.dest}}/db_release_scripts'
   mosip_websub:
     user: websubuser
     sql_path: '{{repos.websub.dest}}/db_scripts'
@@ -334,14 +397,14 @@ config_repo:
   gitpassword: '{{secrets.config_repo.password}}'
   search_folders: sandbox # Subdir in repo containing properties
   local_git_repo:
-    enabled: true
+    enabled: false
     path: '{{nfs.folder}}/mosip-config'
     storage_size: 10Mi
 
 config_server:
   name: config-server
-  internal_url: http://config-server/config
-  ingress_url: 'https://mosip.{{sandbox_domain_name}}/config'
+  internal_url: http://config-server.default:80/config
+  ingress_url: '{{clusters.mz.ingress.base_url}}/config'
   encrypt_key: '{{secrets.config_server.encrypt_key}}'
 
 activemq:
@@ -370,13 +433,13 @@ coredns:
          node: '{{hostvars[groups.dmzworkers[0]]["ansible_host"]}}' # IP of any worker node
  
 
-iam_adapter_url: http://artifactory-service/artifactory/libs-release-local/io/mosip/kernel/kernel-auth-adapter.jar
+iam_adapter_url: http://artifactory-service.default:80/artifactory/libs-release-local/io/mosip/kernel/kernel-auth-adapter.jar
 #The below auth adaptor is build with vertx 3.9.1 to be compatible with regproc stages and services
-iam_adapter_regproc_url: 'http://artifactory-service/artifactory/libs-snapshot-local/io/mosip/kernel/kernel-auth-adapter/1.2.0-SNAPSHOT/kernel-auth-adapter-1.2.0-SNAPSHOT-regproc-20201209055103.jar'
-iam_adapter_regproc_ext_url: 'mosip.{{sandbox_domain_name}}/artifactory/libs-snapshot-local/io/mosip/kernel/kernel-auth-adapter/1.2.0-SNAPSHOT/kernel-auth-adapter-1.2.0-SNAPSHOT-regproc-20201209055103.jar'
-runtimeDepUrlpath: http://artifactory-service/artifactory/libs-release-local/io/mosip/kernel/
+iam_adapter_regproc_url: 'http://artifactory-service.default:80/artifactory/libs-snapshot-local/io/mosip/kernel/kernel-auth-adapter/1.2.0-SNAPSHOT/kernel-auth-adapter-1.2.0-SNAPSHOT-regproc-20201209055103.jar'
+iam_adapter_regproc_ext_url: '{{clusters.mz.ingress.base_url}}/artifactory/libs-snapshot-local/io/mosip/kernel/kernel-auth-adapter/1.2.0-SNAPSHOT/kernel-auth-adapter-1.2.0-SNAPSHOT-regproc-20201209055103.jar'
+runtimeDepUrlpath: http://artifactory-service.default:80/artifactory/libs-release-local/io/mosip/kernel/
 biosdk_service_url: http://13.233.66.241/biosdk-service
-cache_provider_url: http://artifactory-service/artifactory/libs-release-local/cache/cache-provider.jar
+cache_provider_url: http://artifactory-service.default:80/artifactory/libs-release-local/cache/cache-provider.jar
 
 # user for every service inside the container
 container_user: mosip

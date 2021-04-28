@@ -4,227 +4,163 @@ versions:
 
     kernel:
       auth:
-        name: 'kernel-auth-service'
-        image: 'mosipdev/kernel-auth-service:1.1.5'
+        'kernel-auth-service':  'mosipid/kernel-auth-service:1.1.5'
       masterdata:
-        name: 'kernel-masterdata-service' 
-        image: 'mosipdev/kernel-masterdata-service:1.1.5'
+        'kernel-masterdata-service': 'mosipid/kernel-masterdata-service:1.1.5'
       idgen:
-        name: 'kernel-idgenerator-service' 
-        image: 'mosipdev/kernel-idgenerator-service:1.1.5'
+        'kernel-idgenerator-service': 'mosipid/kernel-idgenerator-service:1.1.5'
       prid:
-        name: 'kernel-pridgenerator-service' 
-        image: 'mosipdev/kernel-pridgenerator-service:1.1.5'
+        'kernel-pridgenerator-service': 'mosipid/kernel-pridgenerator-service:1.1.5'
       sync:
-        name: 'kernel-syncdata-service' 
-        image: 'mosipdev/kernel-syncdata-service:1.1.5'
+        'kernel-syncdata-service': 'mosipid/kernel-syncdata-service:1.1.5'
       audit :
-        name: 'kernel-auditmanager-service' 
-        image: 'mosipdev/kernel-auditmanager-service:1.1.5'
+        'kernel-auditmanager-service': 'mosipid/kernel-auditmanager-service:1.1.5'
       key:
-        name: 'kernel-keymanager-service' 
-        image: 'mosipdev/kernel-keymanager-service:1.1.5'
+        'kernel-keymanager-service': 'mosipid/kernel-keymanager-service:1.1.5'
       notifier:
-        name: 'kernel-notification-service' 
-        image: 'mosipdev/kernel-notification-service:1.1.5'
+        'kernel-notification-service': 'mosipid/kernel-notification-service:1.1.5'
       otp:
-        name: 'kernel-otpmanager-service' 
-        image: 'mosipdev/kernel-otpmanager-service:1.1.5'
+        'kernel-otpmanager-service': 'mosipid/kernel-otpmanager-service:1.1.5'
       rid:
-        name: 'kernel-ridgenerator-service' 
-        image: 'mosipdev/kernel-ridgenerator-service:1.1.5'
+        'kernel-ridgenerator-service': 'mosipid/kernel-ridgenerator-service:1.1.5'
       keygen:
-        name: 'kernel-keys-generator' 
-        image: 'mosipdev/keys-generator:1.1.5'
+        'kernel-keys-generator': 'mosipid/keys-generator:1.1.5'
 
     prereg:
       application:
-        name: 'prereg-application-service' 
-        image: 'mosipdev/pre-registration-application-service:1.1.5'
+        'prereg-application-service': 'mosipid/pre-registration-application-service:1.1.5'
       batch:
-        name: 'prereg-batchjob-service' 
-        image: 'mosipdev/pre-registration-batchjob:1.1.5'
+        'prereg-batchjob-service': 'mosipid/pre-registration-batchjob:1.1.5'
       booking:
-        name: 'prereg-booking-service' 
-        image: 'mosipdev/pre-registration-booking-service:1.1.5'
+        'prereg-booking-service': 'mosipid/pre-registration-booking-service:1.1.5'
       datasync:
-        name: 'prereg-datasync-service' 
-        image: 'mosipdev/pre-registration-datasync-service:1.1.5'
+        'prereg-datasync-service': 'mosipid/pre-registration-datasync-service:1.1.5'
       captcha:
-        name: 'prereg-captcha-service' 
-        image: 'mosipdev/pre-registration-captcha-service:1.1.5'
+        'prereg-captcha-service': 'mosipid/pre-registration-captcha-service:1.1.5'
       ui:
-        name: 'prereg-ui' 
-        image: 'mosipdev/pre-registration-ui:1.1.5'
+        'prereg-ui': 'mosipid/pre-registration-ui:1.1.5'
       
     registration_client:
       downloader:
-        name: 'reg-client-downloader' 
-        image: 'mosipdev/registration-client:1.1.5'
-      version: 1.1.5-SNAPSHOT
+        'reg-client-downloader': 'mosipid/registration-client:1.1.5'
+      version: 1.1.5
 
     regproc:
       camel:
-        name: 'regproc-camel-stage' 
-        image: 'mosipdev/registration-processor-common-camel-bridge:1.1.5'
+        'regproc-camel-stage': 'mosipid/registration-processor-common-camel-bridge:1.1.5'
       notification: 
-        name: 'regproc-securezone-notification-stage' 
-        image: 'mosipdev/registration-processor-securezone-notification-stage:1.1.5'
+        'regproc-securezone-notification-stage': 'mosipid/registration-processor-securezone-notification-stage:1.1.5'
       uploader:
-        name: 'regproc-packet-uploader-stage' 
-        image: 'mosipdev/registration-processor-packet-uploader-stage:1.1.5'
+        'regproc-packet-uploader-stage': 'mosipid/registration-processor-packet-uploader-stage:1.1.5'
       quality:
-        name: 'regproc-quality-checker-stage' 
-        image: 'mosipdev/registration-processor-quality-checker-stage:1.1.5'
+        'regproc-quality-checker-stage': 'mosipid/registration-processor-quality-checker-stage:1.1.5'
       validator:
-        name: 'regproc-packet-validator-stage' 
-        image: 'mosipdev/registration-processor-packet-validator-stage:1.1.5'
+        'regproc-packet-validator-stage': 'mosipid/registration-processor-packet-validator-stage:1.1.5'
       osi:
-        name: 'regproc-osi-validator-stage' 
-        image: 'mosipdev/registration-processor-osi-validator-stage:1.1.5'
+        'regproc-osi-validator-stage': 'mosipid/registration-processor-osi-validator-stage:1.1.5'
       demo:
-        name: 'regproc-demo-dedupe-stage' 
-        image: 'mosipdev/registration-processor-demo-dedupe-stage:1.1.5'
+        'regproc-demo-dedupe-stage': 'mosipid/registration-processor-demo-dedupe-stage:1.1.5'
       bio:
-        name: 'regproc-bio-dedupe-stage' 
-        image: 'mosipdev/registration-processor-bio-dedupe-stage:1.1.5'
+        'regproc-bio-dedupe-stage': 'mosipid/registration-processor-bio-dedupe-stage:1.1.5'
       bioauth:
-        name: 'regproc-biometric-authentication-stage' 
-        image: 'mosipdev/registration-processor-biometric-authentication-stage:1.1.5'
+        'regproc-biometric-authentication-stage': 'mosipid/registration-processor-biometric-authentication-stage:1.1.5'
       abishandler:
-        name: 'regproc-abis-handler-stage' 
-        image: 'mosipdev/registration-processor-abis-handler-stage:1.1.5'
+        'regproc-abis-handler-stage': 'mosipid/registration-processor-abis-handler-stage:1.1.5'
       abismid:
-        name: 'regproc-abis-middleware-stage' 
-        image: 'mosipdev/registration-processor-abis-middleware-stage:1.1.5'
+        'regproc-abis-middleware-stage': 'mosipid/registration-processor-abis-middleware-stage:1.1.5'
       manual:
-        name: 'regproc-manual-verification-stage' 
-        image: 'mosipdev/registration-processor-manual-verification-stage:1.1.5'
+        'regproc-manual-verification-stage': 'mosipid/registration-processor-manual-verification-stage:1.1.5'
       external:
-        name: 'regproc-external-stage' 
-        image: 'mosipdev/registration-processor-external-stage:1.1.5'
+        'regproc-external-stage': 'mosipid/registration-processor-external-stage:1.1.5'
       eis: 
-        name: 'regproc-external-integration-service' 
-        image: 'mosipdev/registration-processor-external-integration-service:1.1.5'
+        'regproc-external-integration-service': 'mosipid/registration-processor-external-integration-service:1.1.5'
       uin:
-        name: 'regproc-uin-generator-stage' 
-        image: 'mosipdev/registration-processor-uin-generator-stage:1.1.5'
+        'regproc-uin-generator-stage': 'mosipid/registration-processor-uin-generator-stage:1.1.5'
       msg:
-        name: 'regproc-message-sender-stage' 
-        image: 'mosipdev/registration-processor-message-sender-stage:1.1.5'
+        'regproc-message-sender-stage': 'mosipid/registration-processor-message-sender-stage:1.1.5'
       print:
-        name: 'regproc-printing-stage' 
-        image: 'mosipdev/registration-processor-printing-stage:1.1.5'
+        'regproc-printing-stage': 'mosipid/registration-processor-printing-stage:1.1.5'
       trans:
-        name: 'regproc-registration-transaction-service' 
-        image: 'mosipdev/registration-processor-registration-transaction-service:1.1.5'
+        'regproc-registration-transaction-service': 'mosipid/registration-processor-registration-transaction-service:1.1.5'
       reprocess:
-        name: 'regproc-reprocessor-stage' 
-        image: 'mosipdev/registration-processor-reprocessor-stage:1.1.5'
+        'regproc-reprocessor-stage': 'mosipid/registration-processor-reprocessor-stage:1.1.5'
 
     dmzregproc:  
       receiver:
-        name: 'regproc-packet-receiver-stage' 
-        image: 'mosipdev/registration-processor-packet-receiver-stage:1.1.5'
+        'regproc-packet-receiver-stage': 'mosipid/registration-processor-packet-receiver-stage:1.1.5'
       camel:
-        name: 'regproc-camel-stage' 
-        image: 'mosipdev/registration-processor-common-camel-bridge:1.1.5'
+        'regproc-camel-stage': 'mosipid/registration-processor-common-camel-bridge:1.1.5'
       status:
-        name: 'regproc-registration-status-service' 
-        image: 'mosipdev/registration-processor-registration-status-service:1.1.5'
+        'regproc-registration-status-service': 'mosipid/registration-processor-registration-status-service:1.1.5'
       pktserver:
-        name: 'regproc-dmz-packet-server' 
-        image: 'mosipid/registration-processor-dmz-packet-server:1.0.9'
+        'regproc-dmz-packet-server': 'mosipid/registration-processor-dmz-packet-server:1.0.9'
         
     ida:
       auth:
-        name: 'ida-auth-service' 
-        image: 'mosipdev/authentication-service:1.1.5'
+        'ida-auth-service': 'mosipid/authentication-service:1.1.5'
       internal: 
-         name: 'ida-internal-service' 
-         image: 'mosipdev/authentication-internal-service:1.1.5'
+         'ida-internal-service': 'mosipid/authentication-internal-service:1.1.5'
       kyc: 
-         name: 'ida-kyc-service' 
-         image: 'mosipdev/authentication-kyc-service:1.1.5'
+         'ida-kyc-service': 'mosipid/authentication-kyc-service:1.1.5'
       otp: 
-         name: 'ida-otp-service' 
-         image: 'mosipdev/authentication-otp-service:1.1.5'
+         'ida-otp-service': 'mosipid/authentication-otp-service:1.1.5'
       keygen:  
-        name: 'ida-key-generator' 
-        image: 'mosipdev/keys-generator:1.1.5'
+        'ida-key-generator': 'mosipid/keys-generator:1.1.5'
 
     idrepo:
       identity:
-        name: 'idrepo-identity-service' 
-        image: 'mosipdev/id-repository-identity-service:1.1.5'
+        'idrepo-identity-service': 'mosipid/id-repository-identity-service:1.1.5'
       vid: 
-        name: 'idrepo-vid-service' 
-        image: 'mosipdev/id-repository-vid-service:1.1.5'
+        'idrepo-vid-service': 'mosipid/id-repository-vid-service:1.1.5'
       credentialreq:
-        name: 'idrepo-credential-request-generator' 
-        image: 'mosipdev/credential-request-generator:1.1.5'
+        'idrepo-credential-request-generator': 'mosipid/credential-request-generator:1.1.5'
       credentialservice:
-        name: 'idrepo-credential-service' 
-        image: 'mosipdev/credential-service:1.1.5'
+        'idrepo-credential-service': 'mosipid/credential-service:1.1.5'
       salt:  
-        name: 'idrepo-salt-generator' 
-        image: 'mosipdev/id-repository-salt-generator:1.1.5'
+        'idrepo-salt-generator': 'mosipid/id-repository-salt-generator:1.1.5'
 
     pms:
       partner:
-        name: 'pms-partner-manager-service' 
-        image: 'mosipdev/partner-management-service:1.1.5'
+        'pms-partner-manager-service': 'mosipid/partner-management-service:1.1.5'
       policy:
-        name: 'pms-policy-manager-service' 
-        image: 'mosipdev/policy-management-service:1.1.5'
+        'pms-policy-manager-service': 'mosipid/policy-management-service:1.1.5'
       ui:
-        name: 'pms-ui' 
-        image: 'mosipdev/pmp-ui:develop'
+        'pms-ui': 'mosipdev/pmp-ui:develop'
 
     resident: 
       resident:  
-        name: 'resident-service' 
-        image: 'mosipdev/resident-service:1.1.5'
+        'resident-service': 'mosipid/resident-service:1.1.5'
     
     admin:
       service:
-        name: 'admin-service' 
-        image: 'mosipdev/admin-service:1.1.5'
+        'admin-service': 'mosipid/admin-service:1.1.5'
       ui:
-        name: 'admin-ui' 
-        image: 'mosipdev/admin-ui:1.1.5'
+        'admin-ui': 'mosipid/admin-ui:1.1.5'
     
     packetmanager:
       service:
-        name: 'packetmanager-service' 
-        image: 'mosipdev/commons-packet-service:1.1.5'
+        'packetmanager-service': 'mosipid/commons-packet-service:1.1.5'
 
     datashare:
       service:
-        name: 'datashare-service' 
-        image: 'mosipdev/data-share-service:1.1.5'
+        'datashare-service': 'mosipid/data-share-service:1.1.5'
 
     print:
       service:
-        name: 'print-service' 
-        image: 'mosipdev/print:1.1.5'
+        'print-service': 'mosipid/print:1.1.5'
 
     websub:
       service:
-        name: 'websub-service' 
-        image: 'mosipdev/websub-service:1.1.5'
+        'websub-service': 'mosipid/websub-service:1.1.5'
 
     mock:
       abis:
-        name: 'mock-abis' 
-        image: 'mosipdev/mock-abis:1.1.5'
+        'mock-abis': 'mosipid/mock-abis:1.1.5'
       mv:
-        name: 'mock-mv' 
-        image: 'mosipdev/mock-mv:1.1.5'
+        'mock-mv': 'mosipid/mock-mv:1.1.5'
 #      biosdk: 
-#        'mock-biosdk-service' 'mosipid/sdk-services:latest'
+#        'mock-biosdk-service': 'mosipid/sdk-services:latest'
 
     artifactory:
       service:
-        name: 'artifactory-service' 
-        image: 'mosipdev/artifactory-server:1.1.5'
+        'artifactory-service': 'mosipid/artifactory-server:1.1.5'
