@@ -12,9 +12,10 @@ metadata:
     ingress.kubernetes.io/class: nginx
 spec:
   rules:
-  - http:
+  - host: "console.{{ .Values.domain}}"
+    http:
       paths:
-      - path:
+      - path: /auth
         backend:
           serviceName: {{ .Values.name }}
           servicePort: {{ .Values.servicePort }} 
