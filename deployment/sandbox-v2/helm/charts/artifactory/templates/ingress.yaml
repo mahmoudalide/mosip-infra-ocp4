@@ -8,10 +8,14 @@ metadata:
     nginx.com/health-checks: "true"
 spec:
   rules:
-  - http:
+  - host: "console.{{ .Values.domain}}"
+    http:
       paths:
       - path: /artifactory
         backend:
           serviceName: {{ .Values.docker.service }}
           servicePort: 80 
-
+  tls:
+  - hosts:
+    - "console.{{ .Values.domain}}"
+    secretName: uat-cert
