@@ -20,8 +20,8 @@ dockerHub:
 
 services:
   auth:
-    serviceName: {{ versions.services.kernel.auth.keys()[0] }} 
-    dockerImage: {{ versions.services.kernel.auth.values()[0] }}
+    serviceName: {{ versions.services.kernel.auth.name }} 
+    dockerImage: {{ versions.services.kernel.auth.image }}
     containerPort: 8091
     servicePort: 80
     ingressPath: /v1/authmanager
@@ -30,8 +30,8 @@ services:
       {{ podconfig.kernel.auth | to_nice_yaml(indent=6) | indent(6) }}
 
   masterdata:
-    serviceName: {{ versions.services.kernel.masterdata.keys()[0] }} 
-    dockerImage: {{ versions.services.kernel.masterdata.values()[0] }}
+    serviceName: {{ versions.services.kernel.masterdata.name }} 
+    dockerImage: {{ versions.services.kernel.masterdata.image }}
     containerPort: 8086
     servicePort: 80
     ingressPath: /v1/masterdata
@@ -40,8 +40,8 @@ services:
       {{ podconfig.kernel.masterdata | to_nice_yaml(indent=6) | indent(6) }}
 
   idgen:
-    serviceName: {{ versions.services.kernel.idgen.keys()[0] }} 
-    dockerImage: {{ versions.services.kernel.idgen.values()[0] }}
+    serviceName: {{ versions.services.kernel.idgen.name }} 
+    dockerImage: {{ versions.services.kernel.idgen.image }}
     containerPort: 8080
     servicePort: 80
     ingressPath: /v1/idgenerator 
@@ -50,8 +50,8 @@ services:
       {{ podconfig.kernel.idgen | to_nice_yaml(indent=6) | indent(6) }}
 
   prid:
-    serviceName: {{ versions.services.kernel.prid.keys()[0] }} 
-    dockerImage: {{ versions.services.kernel.prid.values()[0] }}
+    serviceName: {{ versions.services.kernel.prid.name }} 
+    dockerImage: {{ versions.services.kernel.prid.image }}
     containerPort: 8100
     servicePort: 80
     ingressPath: /v1/pridgenerator
@@ -60,8 +60,8 @@ services:
       {{ podconfig.kernel.prid | to_nice_yaml(indent=6) | indent(6) }}
 
   sync:
-    serviceName: {{ versions.services.kernel.sync.keys()[0] }} 
-    dockerImage: {{ versions.services.kernel.sync.values()[0] }}
+    serviceName: {{ versions.services.kernel.sync.name }} 
+    dockerImage: {{ versions.services.kernel.sync.image }}
     containerPort: 8089
     servicePort: 80
     ingressPath: /v1/syncdata 
@@ -70,8 +70,8 @@ services:
       {{ podconfig.kernel.sync | to_nice_yaml(indent=6) | indent(6) }}
 
   audit:
-    serviceName: {{ versions.services.kernel.audit.keys()[0] }} 
-    dockerImage: {{ versions.services.kernel.audit.values()[0] }}
+    serviceName: {{ versions.services.kernel.audit.name }} 
+    dockerImage: {{ versions.services.kernel.audit.image }}
     containerPort: 8081
     servicePort: 80
     ingressPath: /v1/auditmanager
@@ -80,8 +80,8 @@ services:
       {{ podconfig.kernel.audit | to_nice_yaml(indent=6) | indent(6) }}
 
   key:
-    serviceName: {{ versions.services.kernel.key.keys()[0] }} 
-    dockerImage: {{ versions.services.kernel.key.values()[0] }}
+    serviceName: {{ versions.services.kernel.key.name }} 
+    dockerImage: {{ versions.services.kernel.key.image }}
     containerPort: 8088
     servicePort: 80
     hsmUrl: tcp://softhsm-keymanager:80   # Should match with softhsm chart service name and port
@@ -92,8 +92,8 @@ services:
       {{ podconfig.kernel.key | to_nice_yaml(indent=6) | indent(6) }}
 
   notifier:
-    serviceName: {{ versions.services.kernel.notifier.keys()[0] }} 
-    dockerImage: {{ versions.services.kernel.notifier.values()[0] }}
+    serviceName: {{ versions.services.kernel.notifier.name }} 
+    dockerImage: {{ versions.services.kernel.notifier.image }}
     containerPort: 8083
     servicePort: 80
     ingressPath: /v1/notifier
@@ -102,8 +102,8 @@ services:
       {{ podconfig.kernel.notifier | to_nice_yaml(indent=6) | indent(6) }}
 
   otp:
-    serviceName: {{ versions.services.kernel.otp.keys()[0] }} 
-    dockerImage: {{ versions.services.kernel.otp.values()[0] }}
+    serviceName: {{ versions.services.kernel.otp.name }} 
+    dockerImage: {{ versions.services.kernel.otp.image }}
     containerPort: 8085
     servicePort: 80
     ingressPath: /v1/otpmanager 
@@ -112,8 +112,8 @@ services:
       {{ podconfig.kernel.otp | to_nice_yaml(indent=6) | indent(6) }}
 
   rid:
-    serviceName: {{ versions.services.kernel.rid.keys()[0] }} 
-    dockerImage: {{ versions.services.kernel.rid.values()[0] }}
+    serviceName: {{ versions.services.kernel.rid.name }} 
+    dockerImage: {{ versions.services.kernel.rid.image }}
     containerPort: 8096
     servicePort: 80
     ingressPath: /v1/ridgenerator 
@@ -123,7 +123,9 @@ services:
 
 generators:
   keygen:
-    name: {{ versions.services.kernel.keygen.keys()[0] }}
-    dockerImage: {{ versions.services.kernel.keygen.values()[0] }}
+    name: {{ versions.services.kernel.keygen.name }}
+    dockerImage: {{ versions.services.kernel.keygen.image }}
     hsmUrl: tcp://softhsm-keymanager:80
     hsmClientZipPath: {{ hsm_client_zip_path }}
+    
+domain: {{ sandbox_domain_name }}
