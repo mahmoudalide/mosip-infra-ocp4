@@ -195,7 +195,7 @@ minio:
   nodeport: 32000
   node_affinity: 
     enabled: false # To run minio on an exclusive node
-    node: '{{groups.mzworkers[1]}}' # Hostname. Run only on this node, and nothing else should run on this node
+    node: '{{groups.mzworkers[0]}}' # Hostname. Run only on this node, and nothing else should run on this node
     taint:
       key: "minio" # Key for applying taint on node
       value: "only"  
@@ -381,7 +381,7 @@ hdfs:
       path: '{{nfs.folder}}/hdfs/dn' 
   node_affinity: 
     enabled: false # To run all hdfs pods exclusively on a single node.
-    node: '{{groups.mzworkers[1]}}' # Hostname. Run only on this node, and nothing else should run on this node
+    node: '{{groups.mzworkers[0]}}' # Hostname. Run only on this node, and nothing else should run on this node
     taint:
       key: "hdfs" # Key for applying taint on node
       value: "only"  
