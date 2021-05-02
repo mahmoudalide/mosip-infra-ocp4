@@ -21,6 +21,7 @@
   uri:
     url: '{{kc_role_mapping_url}}'
     method: POST 
+    validate_certs: no
     body: '[{{kc_role_info.json}}]' # API expects a list of roles
     body_format: json
     remote_src: 'no'

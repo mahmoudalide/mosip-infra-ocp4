@@ -18,6 +18,7 @@
   uri:
     url: '{{keycloak.url}}/auth/admin/realms/{{kc_realm_id}}/users'
     method: POST
+    validate_certs: no
     src: '{{kc_user_file}}'
     remote_src: 'no'
     status_code:
@@ -32,6 +33,7 @@
   uri:
     url: '{{keycloak.url}}/auth/admin/realms/{{kc_realm_id}}/users/{{kc_user_id}}'
     method: PUT
+    validate_certs: no
     src: "{{kc_user_file}}"
     remote_src: "no"
     status_code:

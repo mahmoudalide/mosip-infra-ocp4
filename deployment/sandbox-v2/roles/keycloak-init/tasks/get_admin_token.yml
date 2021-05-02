@@ -2,6 +2,7 @@
   uri:
     url: "{{keycloak.url}}/auth/realms/master/protocol/openid-connect/token"
     method: POST
+    validate_certs: no
     body_format: form-urlencoded
     body:
       username: '{{keycloak.user}}'

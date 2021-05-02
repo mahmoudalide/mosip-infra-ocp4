@@ -20,6 +20,7 @@
     body: '{"name": "{{kc_role_name}}"}' 
     body_format: json
     remote_src: 'no'
+    validate_certs: no
     status_code:
      - 201
      - 409 # Role already exists

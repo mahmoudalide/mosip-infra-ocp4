@@ -4,6 +4,7 @@
     url: '{{keycloak.url}}/auth/admin/realms/{{kc_realm_id}}/users?username={{kc_username}}'
     method: GET 
     remote_src: 'no'
+    validate_certs: no
     status_code:
      - 200
     headers:

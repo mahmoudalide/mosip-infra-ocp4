@@ -3,6 +3,7 @@
   uri:
     url: "{{keycloak.url}}/auth/admin/realms/{{keycloak_realm_id}}"
     method: GET
+    validate_certs: no
     status_code:
      - 200
      - 404
@@ -16,6 +17,7 @@
     url: '{{keycloak.url}}/auth/admin/realms'
     method: POST
     src: '{{keycloak_realm_data_file}}'
+    validate_certs: no
     remote_src: 'no'
     status_code:
      - 201
@@ -30,6 +32,7 @@
     url: '{{keycloak.url}}/auth/admin/realms/{{keycloak_realm_id}}'
     method: PUT
     src: "{{keycloak_realm_data_file}}"
+    validate_certs: no
     remote_src: "no"
     status_code:
      - 204
