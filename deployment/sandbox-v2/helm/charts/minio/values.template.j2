@@ -108,7 +108,7 @@ persistence:
   ##
   ## Storage class of PV to bind. By default it looks for standard storage class.
   ## If the PV uses a different storage class, specify that here.
-  storageClass: ""
+  storageClass: "nfs-provisioner"
   volumeName: "minio"
   accessMode: ReadWriteOnce
   size: 32Gi
@@ -346,3 +346,4 @@ nodeAffinity:  # Added by mosip
     value: {{ minio.node_affinity.taint.value }}
 
 exportLogs: enabled  # Let filebeat export the logs
+domain: {{ sandbox_domain_name }}
