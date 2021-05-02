@@ -24,8 +24,8 @@ dockerHub:
 
 services:
   packet:
-    serviceName: {{ versions.services.packetmanager.service.keys()[0] }}
-    dockerImage: {{ versions.services.packetmanager.service.values()[0] }}
+    serviceName: {{ versions.services.packetmanager.service.name }}
+    dockerImage: {{ versions.services.packetmanager.service.image }}
     ports:
       containerPort: 8093
       hazelcastPort: 5701
@@ -34,3 +34,4 @@ services:
     healthUrl: /commons/v1/packetmanager/actuator/health
     podconfig:
       {{ podconfig.packetmanager.service | to_nice_yaml(indent=6) | indent(6) }}
+domain: {{ sandbox_domain_name }}
