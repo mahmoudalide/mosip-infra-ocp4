@@ -3,21 +3,22 @@
 # https://public_server/keycloak/auth/, rather than
 # https://public_server/auth/.  Not that last slash is important!
 
-apiVersion: route.openshift.io/v1
-kind: Route
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
 metadata:
+  name: keycloak
   namespace: {{ .Values.ingress.namespace }} 
   annotations:
-    description: Route for application's https service.
-  labels:
-    application: {{ .Values.name }}
-  name: keycloak
+    ingress.kubernetes.io/class: nginx
 spec:
-  host: {{ .Values.domain}}
+  rules:
+  - http:
+      paths:
+      - path:
+        backend:
+          serviceName: {{ .Values.name }}
+          servicePort: {{ .Values.servicePort }} 
   tls:
-    termination: passthrough
-  port:
-    targetPort: 8080
-  to:
-    kind: Service
-    name: {{ .Values.name }}
+  - hosts:
+    - "console.{{ .Values.domain}}"
+    secretName: uat-cert
