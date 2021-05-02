@@ -359,7 +359,7 @@ databases:
     release_path: '{{repos.websub.dest}}/db_release_scripts'
 
 nfs:
-  server: '{{inventory_hostname}}'
+  server: '10.230.80.5'
   folder: /srv/nfs/mosip
   provisioner: nfs-provisioner  # Name
 
