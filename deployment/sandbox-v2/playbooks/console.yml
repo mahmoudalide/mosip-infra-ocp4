@@ -3,7 +3,7 @@
 # play as tasks only run after roles if they are in the same play (for some reason)
 # and for us sequencing is important.
 
-- hosts: all
+- hosts: console
   tags: wait
   gather_facts: no
   tasks:
