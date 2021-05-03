@@ -13,9 +13,13 @@ metadata:
 spec:
   rules:
   - http:
+    host: "console.{{ .Values.domain}}"
       paths:
       - path: /registrationprocessor/v1/dmzpacketserver(/|$)(.*)
         backend:
           serviceName: {{ .Values.services.pktserver.serviceName }}
           servicePort: {{ .Values.services.pktserver.ports.servicePort }}
-
+  tls:
+  - hosts:
+    - "console.{{ .Values.domain}}"
+    secretName: uat-cert
