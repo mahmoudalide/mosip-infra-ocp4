@@ -12,8 +12,8 @@ metadata:
       
 spec:
   rules:
-  - http:
-    host: "console.{{ .Values.domain}}"
+  - host: "console.{{ .Values.domain}}"
+    http:
       paths:
       - path: /registrationprocessor/v1/dmzpacketserver(/|$)(.*)
         backend:
