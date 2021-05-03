@@ -23,8 +23,8 @@ dockerHub:
 
 services:
   admin: 
-    serviceName: {{ versions.services.admin.service.keys()[0] }}
-    dockerImage: {{ versions.services.admin.service.values()[0] }}
+    serviceName: {{ versions.services.admin.service.name }}
+    dockerImage: {{ versions.services.admin.service.image }}
     containerPort: 8098
     servicePort: 80
     ingressPath: /v1/admin
@@ -33,10 +33,11 @@ services:
       {{ podconfig.admin.service | to_nice_yaml(indent=6) | indent(6) }}
 
   ui:
-    serviceName: {{ versions.services.admin.ui.keys()[0] }}
-    dockerImage: {{ versions.services.admin.ui.values()[0] }}
+    serviceName: {{ versions.services.admin.ui.name }}
+    dockerImage: {{ versions.services.admin.ui.image }}
     containerPort: 80
     servicePort: 80
     configName: admin-ui-config # ConfigMap name
     apiHost: {{ site.sandbox_public_url }}/v1/
     ingressPath: /admin-ui
+domain: {{ sandbox_domain_name }}

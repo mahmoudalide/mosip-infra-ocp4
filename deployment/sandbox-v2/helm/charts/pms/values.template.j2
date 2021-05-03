@@ -23,8 +23,8 @@ dockerHub:
 
 services:
   partner:
-    serviceName: {{ versions.services.pms.partner.keys()[0] }}
-    dockerImage: {{ versions.services.pms.partner.values()[0] }}
+    serviceName: {{ versions.services.pms.partner.name }}
+    dockerImage: {{ versions.services.pms.partner.image }}
     containerPort: 9109
     servicePort: 80
     ingressPath: /v1/partnermanager
@@ -33,8 +33,8 @@ services:
       {{ podconfig.pms.partner | to_nice_yaml(indent=6) | indent(6) }}
 
   policy:
-    serviceName: {{ versions.services.pms.policy.keys()[0] }}
-    dockerImage: {{ versions.services.pms.policy.values()[0] }}
+    serviceName: {{ versions.services.pms.policy.name }}
+    dockerImage: {{ versions.services.pms.policy.image }}
     containerPort: 9107
     servicePort: 80
     ingressPath: /v1/policymanager
@@ -43,9 +43,10 @@ services:
       {{ podconfig.pms.partner | to_nice_yaml(indent=6) | indent(6) }}
 
   ui:
-    serviceName: {{ versions.services.pms.ui.keys()[0] }}
-    dockerImage: {{ versions.services.pms.ui.values()[0] }}
+    serviceName: {{ versions.services.pms.ui.name }}
+    dockerImage: {{ versions.services.pms.ui.image }}
     containerPort: 80
     servicePort: 80
     apiHost: {{ site.sandbox_public_url }}/v1/
     ingressPath: /pmp-ui
+domain: {{ sandbox_domain_name }}
