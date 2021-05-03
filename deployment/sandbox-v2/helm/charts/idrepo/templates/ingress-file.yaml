@@ -8,7 +8,8 @@ metadata:
      nginx.com/health-checks: "true"
 spec:
   rules:
-  - http:
+  - host: "console.{{ .Values.domain}}"
+    http:
       paths:
       {{- range $index, $service := .Values.services }}
       - path: {{ $service.ingressPath }} 
@@ -16,4 +17,7 @@ spec:
           serviceName: {{ $service.serviceName }}
           servicePort: {{ $service.servicePort }} 
       {{- end }}
-
+  tls:
+  - hosts:
+    - "console.{{ .Values.domain}}"
+    secretName: uat-cert
