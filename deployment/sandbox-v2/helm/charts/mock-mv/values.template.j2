@@ -18,11 +18,12 @@ dockerHub:
 
 services:
   mockmv:
-    serviceName: {{ versions.services.mock.mv.keys()[0] }}
-    dockerImage: {{ versions.services.mock.mv.values()[0] }}
+    serviceName: {{ versions.services.mock.mv.name }}
+    dockerImage: {{ versions.services.mock.mv.image }}
     containerPort: 8081
     servicePort: 80
     ingressPath: /v1/mockmv
     healthUrl: /v1/mockmv/actuator/health
     podconfig:
       {{ podconfig.mockmv.service | to_nice_yaml(indent=6) | indent(6) }}
+domain: {{ sandbox_domain_name }}

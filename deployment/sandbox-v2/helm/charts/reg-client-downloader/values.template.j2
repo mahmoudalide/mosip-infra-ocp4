@@ -6,7 +6,7 @@ configServerUrl: {{ config_server.internal_url }}
 artifactoryUrl: http://mz.ingress:30080
 imagePullPolicy: Always
 docker:
-  image: {{ versions.services.registration_client.downloader.values()[0] }}
+  image: {{ versions.services.registration_client.downloader.image }}
   ports:
     containerPort: 80
     servicePort: 80
@@ -21,7 +21,7 @@ upgrade_server: {{ site.sandbox_public_url }}
 healthcheck: "{{ site.sandbox_public_url }}/vi/authmanager/actuator/health"
 
 sc:
-  name: ""
+  name: "nfs-provisioner"
 pv:
   name: reg-client-downloader
   size: 2Mi
@@ -43,3 +43,5 @@ services:
     podconfig: {{ podconfig.reg_client_downloader.service | to_yaml }}
 
 exportLogs: enabled  # Let filebeat export the logs
+
+domain: {{ sandbox_domain_name }}

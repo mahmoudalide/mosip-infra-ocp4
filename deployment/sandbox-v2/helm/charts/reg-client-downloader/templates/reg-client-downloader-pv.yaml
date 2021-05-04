@@ -5,6 +5,7 @@ metadata:
   labels:
     name: {{ .Values.pv.name }} 
 spec:
+  storageClassName: {{ .Values.sc.name }} 
   capacity:
     storage: {{ .Values.pv.size }}
   accessModes:
