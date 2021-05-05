@@ -22,6 +22,11 @@ spec:
         app: {{ .Values.serviceName }} 
         exportLogs: {{ .Values.exportLogs }}
     spec:
+      hostAliases:
+      - ip: "10.230.80.3"
+        hostnames:
+        - "mz.ingress"
+        - "console.apps.mzuat.rnp.ma"
       containers:
       - name: {{ .Values.serviceName }} 
         image: {{ .Values.docker.image }} 
