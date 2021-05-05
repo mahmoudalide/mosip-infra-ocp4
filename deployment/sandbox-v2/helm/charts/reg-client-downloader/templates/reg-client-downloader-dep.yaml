@@ -64,7 +64,15 @@ spec:
         volumeMounts:
         - name: reg-client-volume
           mountPath: {{ .Values.mountPath }}
+        - name: uat-cert
+          mountPath: /etc/ssl/certs/my-cert.pem
+          subPath: my-cert.pem
+          readOnly: false
       volumes:
       - name: reg-client-volume
         persistentVolumeClaim:
           claimName: {{ .Values.pvc.name }}
+      - secret: uat-cert
+        configMap:
+          secretName: uat-cert
+
