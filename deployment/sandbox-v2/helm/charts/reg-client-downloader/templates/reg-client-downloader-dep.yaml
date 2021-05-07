@@ -64,18 +64,7 @@ spec:
         volumeMounts:
         - name: reg-client-volume
           mountPath: {{ .Values.mountPath }}
-        - name: cacerts-mz
-          mountPath: /etc/ssl/certs/cacerts-mz
-          subPath: cacerts-mz
-          readOnly: false
-        - name: cacerts-mz
-          mountPath: /etc/pki/ca-trust/extracted/java/
-          readOnly: true
       volumes:
       - name: reg-client-volume
         persistentVolumeClaim:
           claimName: {{ .Values.pvc.name }}
-      - name: cacerts-mz
-        configMap:
-          name: cacerts-mz
-
