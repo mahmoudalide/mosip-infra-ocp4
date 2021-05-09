@@ -13,7 +13,7 @@ artifactory_url: http://artifactory-service.default:80/
 versions_file: '{{install_root}}/versions.yml' 
 podconfig_file: '{{install_root}}/podconfig.yml'
 
-sandbox_domain_name: apps.mzuat.rnp.ma
+sandbox_domain_name: app-console.apps.mzuat.rnp.ma
 internal_domain_name: '{{ansible_host}}'  # IP address of console
 site:
   sandbox_public_url: 'https://console.{{sandbox_domain_name}}'  # The public url needs to point to nginx on console
@@ -33,10 +33,10 @@ ssl:
       certificate_key: '/etc/ssl/private/nginx-selfsigned.key'
       csr: '/etc/ssl/csr/nginx-selfsigned.csr'
     letsencrypt:
-      get_certificate: true  # get a fresh certificate for the domain using Letsencrypt
+      get_certificate: false  # get a fresh certificate for the domain using Letsencrypt
       email: info@mosip.io
-      certificate: '/etc/letsencrypt/live/{{sandbox_domain_name}}/fullchain.pem'
-      certificate_key: '/etc/letsencrypt/live/{{sandbox_domain_name}}/privkey.pem'
+      certificate: '/home/mosipuser/certs/cert_mzuat.cer.pem'
+      certificate_key: '/home/mosipuser/certs/mzuat_privkey.key'
 
 developer_mode: true  # false if limited APIs are exposed externally.
     
@@ -69,7 +69,7 @@ clusters:
         http: 30080 
         https: 30443
       node_alias: "{{'mz.' + site.ingress_tld}}" # Hardcoded, mapped to one of the nodes below in coredns config
-      base_url: 'http://{{groups.mzworkers[0]}}:30080' # Any node since ingress runs on nodeport
+      base_url: 'https://console.apps.mzuat.rnp.ma' # Any node since ingress runs on nodeport
     dashboard:
       url: /mz-dashboard
       token_expiry: 86400 # Seconds
@@ -117,7 +117,7 @@ clusters:
         http: 30080 
         https: 30443
       node_alias: "{{'dmz.' + site.ingress_tld}}" # Hardcoded, mapped to one of the nodes below in coredns config
-      base_url: 'http://{{groups["dmzworkers"][0]}}:30080' # Any node since ingress runs on nodeport
+      base_url: 'https://console.apps.dmzuat.rnp.ma' # Any node since ingress runs on nodeport
     dashboard: 
       url: /dmz-dashboard
       token_expiry: 86400 # Seconds 
@@ -163,8 +163,8 @@ postgres:
   external: false  # Postgres installed outside cluster, and not installed using these scripts. Set to true if
                    # you already have postgres running on a separate system.
   # Change host here if external: true
-  host: '10.230.82.211'  # Host name of any node since standard sandbox runs postgres as pod on nodeport
-  port: 30090 # hardcoded node port for postgres  
+  host: '10.230.80.5'  # Host name of any node since standard sandbox runs postgres as pod on nodeport
+  port: 5432 # hardcoded node port for postgres  
   user: postgres 
   password: '{{secrets.postgres.su}}'
   init: true  # Initialize db. Set it to false in production after initializing once.
