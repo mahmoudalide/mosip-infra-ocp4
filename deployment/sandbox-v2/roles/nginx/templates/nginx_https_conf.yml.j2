@@ -90,203 +90,229 @@ http {
 
         location /keycloak/ {
           proxy_pass {{clusters.mz.ingress.base_url}}/keycloak/;
+          proxy_set_header Host {{clusters.mz.ingress.base_url}};
         }
 
         location /config/ {
           proxy_pass {{clusters.mz.ingress.base_url}}/config/;
+          proxy_set_header Host {{clusters.mz.ingress.base_url}};
         }
 
         location /preregistration/v1/ {
            proxy_pass {{clusters.mz.ingress.base_url}}/preregistration/v1/;
+           proxy_set_header Host {{clusters.mz.ingress.base_url}};
         }
         location /pre-registration-ui/ {
            proxy_pass {{clusters.mz.ingress.base_url}}/pre-registration-ui/;
+           proxy_set_header Host {{clusters.mz.ingress.base_url}};
         }
    
         location /v1/masterdata/ {
            proxy_pass {{clusters.mz.ingress.base_url}}/v1/masterdata/;
+           proxy_set_header Host {{clusters.mz.ingress.base_url}};
         }
 
         location /v1/keymanager/ {
            proxy_pass {{clusters.mz.ingress.base_url}}/v1/keymanager/;
+           proxy_set_header Host {{clusters.mz.ingress.base_url}};
         }
 
         location /v1/syncdata/ {
            proxy_pass {{clusters.mz.ingress.base_url}}/v1/syncdata/;
+           proxy_set_header Host {{clusters.mz.ingress.base_url}};
         }
 
         location /v1/idgenerator/ {
            proxy_pass {{clusters.mz.ingress.base_url}}/v1/idgenerator/;
+           proxy_set_header Host {{clusters.mz.ingress.base_url}};
         }
 
         location /v1/ridgenerator/ {
            proxy_pass {{clusters.mz.ingress.base_url}}/v1/ridgenerator/;
+           proxy_set_header Host {{clusters.mz.ingress.base_url}};
         }
 
         location /v1/pridgenerator/ {
            proxy_pass {{clusters.mz.ingress.base_url}}/v1/pridgenerator/;
+           proxy_set_header Host {{clusters.mz.ingress.base_url}};
         }
 
         location /v1/otpmanager/ {
            proxy_pass {{clusters.mz.ingress.base_url}}/v1/otpmanager/;
+           proxy_set_header Host {{clusters.mz.ingress.base_url}};
         }
 
         location /v1/notifier/ {
            proxy_pass {{clusters.mz.ingress.base_url}}/v1/notifier/;
+           proxy_set_header Host {{clusters.mz.ingress.base_url}};
         }
    
         location /v1/authmanager/ {
            proxy_pass {{clusters.mz.ingress.base_url}}/v1/authmanager/;
+           proxy_set_header Host {{clusters.mz.ingress.base_url}};
         }
 
         location /v1/auditmanager/ {
            proxy_pass {{clusters.mz.ingress.base_url}}/v1/auditmanager/;
+           proxy_set_header Host {{clusters.mz.ingress.base_url}};
         }
    
         location /idauthentication/v1/auth/ {
            proxy_pass {{clusters.mz.ingress.base_url}}/idauthentication/v1/auth/;
+           proxy_set_header Host {{clusters.mz.ingress.base_url}};
         }
 
         location /idauthentication/v1/kyc/ {
            proxy_pass {{clusters.mz.ingress.base_url}}/idauthentication/v1/kyc/;
+           proxy_set_header Host {{clusters.mz.ingress.base_url}};
         }
 
         location /idauthentication/v1/otp/ {
            proxy_pass {{clusters.mz.ingress.base_url}}/idauthentication/v1/otp/;
+           proxy_set_header Host {{clusters.mz.ingress.base_url}};
         }
 
         location /idauthentication/v1/internal/ {
            proxy_pass {{clusters.mz.ingress.base_url}}/idauthentication/v1/internal/;
+           proxy_set_header Host {{clusters.mz.ingress.base_url}};
         }
 
         location /idrepository/v1/identity/ {
            proxy_pass {{clusters.mz.ingress.base_url}}/idrepository/v1/identity/;
+           proxy_set_header Host {{clusters.mz.ingress.base_url}};
         }
 
         # Note the below is for VID access.        
         location /idrepository/v1/ {
-           proxy_pass {{clusters.mz.ingress.base_url}}/idrepository/v1/;                                                                         
+           proxy_pass {{clusters.mz.ingress.base_url}}/idrepository/v1/;    
+           proxy_set_header Host {{clusters.mz.ingress.base_url}};                                                                     
          }
 
 
         location /registrationprocessor/v1/registrationstatus/ {
            proxy_pass {{clusters.dmz.ingress.base_url}}/registrationprocessor/v1/registrationstatus/;
+           proxy_set_header Host {{clusters.dmz.ingress.base_url}};
         }
 
         location /registrationprocessor/v1/packetreceiver/ {
            proxy_pass {{clusters.dmz.ingress.base_url}}/registrationprocessor/v1/packetreceiver/;
+           proxy_set_header Host {{clusters.dmz.ingress.base_url}};
         }
 
         location /registrationprocessor/v1/securezone/ {
            proxy_pass {{clusters.mz.ingress.base_url}}/registrationprocessor/v1/securezone/;
+           proxy_set_header Host {{clusters.mz.ingress.base_url}};
         }
 
         location /registrationprocessor/v1/manualverification/ {
            proxy_pass {{clusters.mz.ingress.base_url}}/registrationprocessor/v1/manualverification/;
+           proxy_set_header Host {{clusters.mz.ingress.base_url}};
         }
 
         location /registrationprocessor/v1/requesthandler/ {
            proxy_pass {{clusters.mz.ingress.base_url}}/registrationprocessor/v1/requesthandler/;
+           proxy_set_header Host {{clusters.mz.ingress.base_url}};
         }
 
         location /registrationprocessor/v1/registrationtransaction/ {
            proxy_pass {{clusters.mz.ingress.base_url}}/registrationprocessor/v1/registrationtransaction/;
+           proxy_set_header Host {{clusters.mz.ingress.base_url}};
         }
 
         location /registrationprocessor/v1/print/ {
            proxy_pass {{clusters.mz.ingress.base_url}}/registrationprocessor/v1/print/;
+           proxy_set_header Host {{clusters.mz.ingress.base_url}};
         }
 
         location /registrationprocessor/v1/bio-dedupe/ {
            proxy_pass {{clusters.mz.ingress.base_url}}/registrationprocessor/v1/bio-dedupe/;
+           proxy_set_header Host {{clusters.mz.ingress.base_url}};
         }
 
         location /pmp-ui/ {
           proxy_pass {{clusters.mz.ingress.base_url}}/pmp-ui/;
+          proxy_set_header Host {{clusters.mz.ingress.base_url}};
         }
 
         location /v1/policymanager/ {
           proxy_pass {{clusters.mz.ingress.base_url}}/v1/policymanager/;
+          proxy_set_header Host {{clusters.mz.ingress.base_url}};
         }
 
         location /v1/partnermanager/ {
            proxy_pass {{clusters.mz.ingress.base_url}}/v1/partnermanager/;
+           proxy_set_header Host {{clusters.mz.ingress.base_url}};
         }
 
-        location /mz-dashboard/ { # note: https needed here
-           proxy_pass https://{{clusters.mz.nodeport_node}}:{{clusters.mz.dashboard.nodeport}}/;
-        }
-
-        location /dmz-dashboard/ { # note: https needed here
-           proxy_pass https://{{clusters.dmz.nodeport_node}}:{{clusters.dmz.dashboard.nodeport}}/;
-        }
-
-        location /{{clusters.mz.monitoring.grafana_ingress_path}}/ {
-           proxy_pass  {{clusters.mz.ingress.base_url}}/{{clusters.mz.monitoring.grafana_ingress_path}}/;
-        }
-
-        location /{{clusters.dmz.monitoring.grafana_ingress_path}}/ {
-           proxy_pass  {{clusters.dmz.ingress.base_url}}/{{clusters.dmz.monitoring.grafana_ingress_path}}/;
-        }
-
-        location /kibana/ {
-           proxy_pass  {{clusters.mz.ingress.base_url}}/kibana/;
-        }
 
         location /v1/admin/ {
            proxy_pass {{clusters.mz.ingress.base_url}}/v1/admin/;
+           proxy_set_header Host {{clusters.mz.ingress.base_url}};
         }
 
         location /admin-ui/ {
            proxy_pass {{clusters.mz.ingress.base_url}}/admin-ui/;
+           proxy_set_header Host {{clusters.mz.ingress.base_url}};
         }
 
         location /resident/v1/ {
            proxy_pass {{clusters.mz.ingress.base_url}}/resident/v1/;
+           proxy_set_header Host {{clusters.mz.ingress.base_url}};
         }
 
         location /registration-client/ {
            proxy_pass {{clusters.dmz.ingress.base_url}}/registration-client/;
+           proxy_set_header Host {{clusters.dmz.ingress.base_url}};
         }
 
         location /activemq/admin/ {
            proxy_pass {{clusters.mz.ingress.base_url}}/activemq/admin/;
+           proxy_set_header Host {{clusters.mz.ingress.base_url}};
         }
 
         location /commons/v1/packetmanager/ {
            proxy_pass {{clusters.mz.ingress.base_url}}/commons/v1/packetmanager/;
+           proxy_set_header Host {{clusters.mz.ingress.base_url}};
         }
 
         location /minio/ {
            proxy_pass {{clusters.mz.ingress.base_url}}/minio/;
+           proxy_set_header Host {{clusters.mz.ingress.base_url}};
         }
 
         location /v1/bioextractor/mock/ {
            proxy_pass {{clusters.mz.ingress.base_url}}/v1/bioextractor/mock/;
+           proxy_set_header Host {{clusters.mz.ingress.base_url}};
         }
 
         location /v1/credentialrequest/{
            proxy_pass {{clusters.mz.ingress.base_url}}/v1/credentialrequest/;
+           proxy_set_header Host {{clusters.mz.ingress.base_url}};
         }
 
         location /v1/credentialservice/{
            proxy_pass {{clusters.mz.ingress.base_url}}/v1/credentialservice/;
+           proxy_set_header Host {{clusters.mz.ingress.base_url}};
         }
 
         location /v1/datashare/ {
            proxy_pass {{clusters.mz.ingress.base_url}}/v1/datashare/;
+           proxy_set_header Host {{clusters.mz.ingress.base_url}};
         }
 
         location /v1/biosdk-service/ {
            proxy_pass {{clusters.mz.ingress.base_url}}/v1/biosdk-service/;
+           proxy_set_header Host {{clusters.mz.ingress.base_url}};
         }
 
         location /v1/print/ {
            proxy_pass {{clusters.mz.ingress.base_url}}/v1/print/;
+           proxy_set_header Host {{clusters.mz.ingress.base_url}};
         }
 
         location /websub/ {
            proxy_pass {{clusters.dmz.ingress.base_url}}/websub/;
+           proxy_set_header Host {{clusters.dmz.ingress.base_url}};
         }
 
         error_page 404 /404.html;
@@ -301,18 +327,16 @@ http {
 }
 
 stream {
-    server {
-        listen {{postgres.port}};  
-        proxy_pass {{postgres.host}}:{{postgres.port}};
-    }
 
     server {
         listen {{activemq.nodeport}};  # For activemq. Connecting to nodeport
         proxy_pass {{clusters.mz.nodeport_node}}:{{activemq.nodeport}};
+        proxy_set_header Host {{clusters.mz.ingress.base_url}};
     }
     server {
         listen {{minio.nodeport}};  # For minio. Connecting to nodeport
         proxy_pass {{clusters.mz.nodeport_node}}:{{minio.nodeport}};
+        proxy_set_header Host {{clusters.mz.ingress.base_url}};
     }
 
 }
