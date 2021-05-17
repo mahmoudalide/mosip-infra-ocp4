@@ -4,7 +4,7 @@ docker:
   containerPort: 8080
   servicePort: 80
 jarName: kernel-config-server # Without .jar. Used locally for Docker
-component: config-server
+component: rnp-mv-backend
 
 domain: {{ sandbox_domain_name }}
 internalDomain: {{ clusters.mz.nodeport_node }} 
@@ -26,19 +26,14 @@ localRepo:
   enabled: {{ config_repo.local_git_repo.enabled }}
   mountPath: /opt
   pv:
-    name: config-server-pv
+    name: rnp-mv-backend-pv
     size: 100Mi
   pvc:
-    name: config-server-pvc
+    name: rnp-mv-backend-pvc
     size: 100Mi # Should not exceed pv size
   sc:
     name: "nfs-provisioner"
   nfs:
     server: {{ nfs.server }}
     path: /opt
-
-services:
-  config_server:
-    podconfig:
-      {{ podconfig.config_server.service | to_nice_yaml(indent=6) | indent(6) }}
 
