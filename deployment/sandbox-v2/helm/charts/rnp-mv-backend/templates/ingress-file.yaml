@@ -1,0 +1,25 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.com/health-checks: "true"
+  name: rnp-mv-backend
+  namespace: default
+spec:
+  rules:
+  - host: "console.{{ .Values.domain}}"
+    http:
+      paths:
+      - path: /rnp-mv-backend
+        backend:
+          service:
+            name: rnp-mv-backend
+            port:
+              number: 80
+        path: /rnp-mv-backend
+
+  tls:
+  - hosts:
+    - "console.{{ .Values.domain}}"
+    secretName: uat-cert
